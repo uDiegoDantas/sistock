@@ -90,3 +90,71 @@ RF05.04 - Deletar Usuário         | Deleta um usuário informando o código. | 
 
 ---
 
+### Modelo Conceitual
+
+Abaixo apresentamos o modelo conceitual usando o **Mermaid**.
+
+```mermaid
+erDiagram
+    USUARIO {
+        long id PK
+        string name
+        string login
+        string password
+    }
+
+    CATEGORIA {
+        long id PK
+        string nome
+    }
+
+    PRODUTO {
+        long id PK
+        string nome
+        double preco
+        long id_categoria FK
+    }
+    CATEGORIA ||--o{ PRODUTO : "possui"
+
+    LOG {
+        long id PK
+        Date data_movimentacao
+        long id_estoque FK 
+    }
+
+    ESTOQUE {
+        long id PK
+        int quantidade
+        long id_produto FK
+    }
+    ESTOQUE ||--o{ LOG : "possui"
+    ESTOQUE ||--|| PRODUTO : "tem"
+
+```
+
+#### Descrição das Entidades
+**Usuário** - Usuário que irá utilizar todo o sistema, de cabo a rabo.
+
+**Produto** - Representa os produtos utilizados no sistema
+
+**Categoria** - Representa as categorias utilizados no sistema. Essa entidade é essencial para a entidade dos Produtos.
+
+**Estoque** - Entidade que controla a quantidade do estoque de cada produto.
+
+**Log** - Funciona como um auxiliar para o Estoque, indicando cada movimentação que ocorreu por data e hora.
+
+
+## Lista de Requisitos Não-Funcionais
+
+Requisito                                 | Descrição   |
+---------                                 | ----------- |
+RNF001 - Deve ser acessível via navegador | Deve abrir perfeitamento no Firefox e no Chrome. |
+RNF002 - Manutenibilidade | O código do sistema deve ser modular e bem documentado, para facilitar futuras manutenções ou modificações. |
+RNF003 - Usabilidade | A interface do usuário deve ser intuitiva e fácil de usar, para que os operadores possam gerenciar o estoque rapidamente. |
+
+## Riscos
+
+Tabela com o mapeamento dos riscos do projeto, as possíveis soluções e os responsáveis.
+
+Data | Risco | Prioridade | Responsável | Status | Providência/Solução |
+------ | ------ | ------ | ------ | ------ | ------ |
