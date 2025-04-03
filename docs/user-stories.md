@@ -12,6 +12,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | 03/04/2025 | 0.0.2   | Detalhamento do User Story US01    | Emerson Silva |
 | 03/04/2025 | 0.0.3   | Detalhamento do User Story US02    | Emerson Silva |
 | 03/04/2025 | 0.0.4   | Detalhamento do User Story US03    | Diego Dantas |
+| 03/04/2025 | 0.0.5   | Detalhamento do User Story US04    | Diego Dantas |
 
 ### User Story US01 - Manter Categoria
 |               |                                                                |
@@ -104,3 +105,30 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **Código**      | **Descrição** |
 | **TA03.01** | O usuário não deve conseguir inserir ou atualizar estoques com produtos inválidos |
 | **TA03.02** | O usuário não deve conseguir inserir ou atualizar estoques com quantidade inferior a zero |
+
+### User Story US04 - Manter Log
+|               |                                                                |
+| ------------- | :------------------------------------------------------------- |
+| **Descrição** | O sistema deve manter um operações de adicionar e listar os logs dentro de si. Como atributos, os logs possuem estoque relacionado e data. Os usuários podem fazer todas operações de inserir e listar com os logs.
+
+| **Requisitos envolvidos** |                                                    |
+| ------------- | :------------------------------------------------------------- |
+| RF04.01          | Inserir Log |
+| RF04.02          | Listar Log  |
+
+|                           |                                     |
+| ------------------------- | ----------------------------------- | 
+| **Prioridade**            | Essencial                           | 
+| **Estimativa**            | 6 h                                 | 
+| **Tempo Gasto (real):**   |                                     | 
+| **Tamanho Funcional**     | 7 PF                                | 
+| **Analista**              | Emerson Silva                       | 
+| **Desenvolvedor**         | Diego Dantas                        | 
+| **Revisor**               | Reinaldo Alves                      | 
+| **Testador**              | João Pedro                          | 
+
+
+| Testes de Aceitação (TA) |  |
+| ----------- | --------- |
+| **Código**      | **Descrição** |
+
