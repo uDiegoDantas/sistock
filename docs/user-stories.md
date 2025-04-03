@@ -11,6 +11,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | 02/04/2025 | 0.0.1   | Template e descrição do documento  | Reinaldo Alves |
 | 03/04/2025 | 0.0.2   | Detalhamento do User Story US01    | Emerson Silva |
 | 03/04/2025 | 0.0.3   | Detalhamento do User Story US02    | Emerson Silva |
+| 03/04/2025 | 0.0.4   | Detalhamento do User Story US03    | Diego Dantas |
 
 ### User Story US01 - Manter Categoria
 |               |                                                                |
@@ -72,3 +73,34 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **Código**      | **Descrição** |
 | **TA02.01** | O usuário não deve conseguir inserir ou atualizar produtos com nomes inválidos |
 | **TA02.02** | O usuário não deve conseguir inserir ou atualizar produtos com preço menor ou igual a zero |
+
+
+### User Story US03 - Manter Estoque
+|               |                                                                |
+| ------------- | :------------------------------------------------------------- |
+| **Descrição** | O sistema deve manter um operações de adicionar, alterar, remover e listar os estoques dentro de si. Como atributos, os estoques possuem produto relacionado, e quantidade. Os usuários podem fazer todas as operações com os estoques.
+
+| **Requisitos envolvidos** |                                                    |
+| ------------- | :------------------------------------------------------------- |
+| RF03.01          | Inserir Estoque |
+| RF03.02          | Listar Estoque  |
+| RF03.03          | Alterar Estoque|
+| RF03.04          | Excluir Estoque |
+
+|                           |                                     |
+| ------------------------- | ----------------------------------- | 
+| **Prioridade**            | Essencial                           | 
+| **Estimativa**            | 6 h                                 | 
+| **Tempo Gasto (real):**   |                                     | 
+| **Tamanho Funcional**     | 9 PF                                | 
+| **Analista**              | Emerson Silva                       | 
+| **Desenvolvedor**         | Diego Dantas                        | 
+| **Revisor**               | Reinaldo Alves                      | 
+| **Testador**              | João Pedro                          | 
+
+
+| Testes de Aceitação (TA) |  |
+| ----------- | --------- |
+| **Código**      | **Descrição** |
+| **TA03.01** | O usuário não deve conseguir inserir ou atualizar estoques com produtos inválidos |
+| **TA03.02** | O usuário não deve conseguir inserir ou atualizar estoques com quantidade inferior a zero |
