@@ -13,6 +13,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | 03/04/2025 | 0.0.3   | Detalhamento do User Story US02    | Emerson Silva |
 | 03/04/2025 | 0.0.4   | Detalhamento do User Story US03    | Diego Dantas |
 | 03/04/2025 | 0.0.5   | Detalhamento do User Story US04    | Diego Dantas |
+| 03/04/2025 | 0.0.6   | Detalhamento do User Story US05    | Diego Dantas |
 
 ### User Story US01 - Manter Categoria
 |               |                                                                |
@@ -126,6 +127,35 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **Desenvolvedor**         | Diego Dantas                        | 
 | **Revisor**               | Reinaldo Alves                      | 
 | **Testador**              | João Pedro                          | 
+
+
+| Testes de Aceitação (TA) |  |
+| ----------- | --------- |
+| **Código**      | **Descrição** |
+
+
+### User Story US05 - Manter Usuário
+|               |                                                                |
+| ------------- | :------------------------------------------------------------- |
+| **Descrição** | O sistema deve manter um operações de adicionar, alterar, remover e listar os usuários dentro de si. Como atributos, os usuarios possuem nome, login e senha. Os usuários podem fazer todas as operações consigo mesmo.
+
+| **Requisitos envolvidos** |                                                    |
+| ------------- | :------------------------------------------------------------- |
+| RF05.01          | Inserir Usuário |
+| RF05.02          | Listar Usuário  |
+| RF05.03          | Listar Usuário  |
+| RF05.04          | Listar Usuário  |
+
+|                           |                                     |
+| ------------------------- | ----------------------------------- | 
+| **Prioridade**            | Essencial                           | 
+| **Estimativa**            | 12h                                 | 
+| **Tempo Gasto (real):**   |                                     | 
+| **Tamanho Funcional**     | 12PF                                | 
+| **Analista**              | João Pedro                          | 
+| **Desenvolvedor**         | Emerson Silva                       | 
+| **Revisor**               | Diego Dantas                        | 
+| **Testador**              | Reinaldo Alves                      | 
 
 
 | Testes de Aceitação (TA) |  |
