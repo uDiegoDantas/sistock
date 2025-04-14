@@ -22,9 +22,9 @@ Interoperabilidade | 1. Deve ser desenvolvido no sistema linux, criando uma imag
 | Mecanismo de Análise | Mecanismo de Design  | Mecanismo de Implementação |
 | -------------------- | -------------------- | -------------------------- |
 | Persistência         | Banco de dados relacional | PostgreSQL 16       |
-| Camada de Dados      | Mapeamento OR             | Prisma ORM            |
+| Camada de Dados      | Mapeamento ORM             | Prisma ORM            |
 | Frontend  | Interface Usuário | Angular, HTML5, JS |
-| Backend              | REST                  | ExpressJs     |
+| Backend              | REST                  | NestJS     |
 | Build                | Imagem Docker            | Docker e Dockerfile    |
 | Deploy               | Container Docker         | Docker compose         |
 
