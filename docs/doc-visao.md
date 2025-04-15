@@ -28,7 +28,8 @@ O sistema poderá ser utilizado por apenas um usuário.
 
 Perfil                                 | Descrição   |
 ---------                              | ----------- |
-Administrador | Este usuário realiza os cadastros de novos admnistratores e podem realizar qualquer função. 
+Administrador | Este usuário realiza os cadastros de novos usuários e podem realizar qualquer função. 
+Funcionário | Este usuário pode realizar funções com as entidades de Produtos, Estoque, Categorias e Logs. 
 
 ## Lista de Requisitos Funcionais
 
@@ -101,6 +102,7 @@ erDiagram
         string name
         string login
         string password
+        boolean isAdmin
     }
 
     CATEGORIA {

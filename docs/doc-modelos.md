@@ -9,6 +9,7 @@ classDiagram
     Usuario : +long id
     Usuario : +String name
     Usuario : +String password
+    Usuario : +boolean iAdmin
 
     Categoria : +long id
     Categoria : +String name
@@ -21,7 +22,7 @@ classDiagram
     Log : +long id PK
     Log : +Date data_movimentacao
     Log : +int id_estoque
-    Log: buscarPorData()
+    Log : buscarPorData()
 
     Estoque: +long id
     Estoque: +int quantidade
@@ -50,6 +51,7 @@ erDiagram
         string name
         string login
         string password
+        boolean isAdmin
     }
 
     CATEGORIA {
@@ -97,6 +99,7 @@ erDiagram
 | name               | nome do usuário                               | VARCHAR      | 30     | Not Null |
 | login              | login do usuário                              | VARCHAR      | 30     | Unique / Not Null |
 | password           | senha do usuário                              | VARCHAR      | 30     | Not Null |
+| isAdmin            | identificador se o usuário é admin            | BOOLEAN      | --     | Not Null |
 | nome               | nome da categoria                             | VARCHAR      | 40     | Unique / Not Null |
 | nome               | nome do produto                               | VARCHAR      | 30     | Not Null |
 | preco              | preço do produto                              | DOUBLE       | --     | Not Null |
