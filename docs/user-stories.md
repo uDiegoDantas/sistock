@@ -30,7 +30,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 |                           |                                     |
 | ------------------------- | ----------------------------------- | 
 | **Prioridade**            | Essencial                           | 
-| **Estimativa**            | 4 h                                 | 
+| **Estimativa**            | 15 h                                | 
 | **Tempo Gasto (real):**   |                                     | 
 | **Tamanho Funcional**     | 5 PF                                | 
 | **Analista**              | Reinaldo Alves                      | 
@@ -61,9 +61,9 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 |                           |                                     |
 | ------------------------- | ----------------------------------- | 
 | **Prioridade**            | Essencial                           | 
-| **Estimativa**            | 6 h                                 | 
+| **Estimativa**            | 20 h                                | 
 | **Tempo Gasto (real):**   |                                     | 
-| **Tamanho Funcional**     | 10 PF                                | 
+| **Tamanho Funcional**     | 7  PF                               | 
 | **Analista**              | Diego Dantas                        | 
 | **Desenvolvedor**         | Reinaldo Alves                      | 
 | **Revisor**               | João Pedro                          | 
@@ -92,7 +92,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 |                           |                                     |
 | ------------------------- | ----------------------------------- | 
 | **Prioridade**            | Essencial                           | 
-| **Estimativa**            | 6 h                                 | 
+| **Estimativa**            | 30 h                                | 
 | **Tempo Gasto (real):**   |                                     | 
 | **Tamanho Funcional**     | 9 PF                                | 
 | **Analista**              | Emerson Silva                       | 
@@ -106,6 +106,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **Código**      | **Descrição** |
 | **TA03.01** | O usuário não deve conseguir inserir ou atualizar estoques com produtos inválidos |
 | **TA03.02** | O usuário não deve conseguir inserir ou atualizar estoques com quantidade inferior a zero |
+| **TA03.02** | Não deve ser possível inserir um estoque contendo um produto que já está com um estoque cadastrado. |
 
 ### User Story US04 - Manter Log
 |               |                                                                |
@@ -120,9 +121,9 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 |                           |                                     |
 | ------------------------- | ----------------------------------- | 
 | **Prioridade**            | Essencial                           | 
-| **Estimativa**            | 6 h                                 | 
+| **Estimativa**            | 35 h                                | 
 | **Tempo Gasto (real):**   |                                     | 
-| **Tamanho Funcional**     | 7 PF                                | 
+| **Tamanho Funcional**     | 12 PF                               | 
 | **Analista**              | Emerson Silva                       | 
 | **Desenvolvedor**         | Diego Dantas                        | 
 | **Revisor**               | Reinaldo Alves                      | 
@@ -149,9 +150,9 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 |                           |                                     |
 | ------------------------- | ----------------------------------- | 
 | **Prioridade**            | Essencial                           | 
-| **Estimativa**            | 12h                                 | 
+| **Estimativa**            | 25h                                 | 
 | **Tempo Gasto (real):**   |                                     | 
-| **Tamanho Funcional**     | 12PF                                | 
+| **Tamanho Funcional**     | 8 PF                                | 
 | **Analista**              | João Pedro                          | 
 | **Desenvolvedor**         | Emerson Silva                       | 
 | **Revisor**               | Diego Dantas                        | 
@@ -161,4 +162,4 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | Testes de Aceitação (TA) |  |
 | ----------- | --------- |
 | **Código**      | **Descrição** |
-
+| **TA05.01** | Não deve ser possível o cadastro de usuários com logins que já foram cadastrados no sistema. |

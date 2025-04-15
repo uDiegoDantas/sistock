@@ -104,4 +104,4 @@ erDiagram
 | data_movimentacao  | data de movimentação do log                   | DATE         | --     | Not Null |
 | id_estoque         | id do estoque relacionado ao log              | BIGINT       | 150    | FK / Not Null |
 | quantidade         | quantidade do estoque                         | INT          | --     | Not Null |
-| id_produto         | id do produto relacionado ao estoque          | BIGINT       | --     | FK / Not Null |
+| id_produto         | id do produto relacionado ao estoque          | BIGINT       | --     | FK / Unique / Not Null |
