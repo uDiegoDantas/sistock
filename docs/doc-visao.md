@@ -158,3 +158,5 @@ Tabela com o mapeamento dos riscos do projeto, as possíveis soluções e os res
 
 Data | Risco | Prioridade | Responsável | Status | Providência/Solução |
 ------ | ------ | ------ | ------ | ------ | ------ |
+15/04/2025 | Time não aprender ou demorar a aprender corretamente as tecnologias utilizadas no projeto | Alta | João Pedro | Vigente | Aulas, explicação de código e checagem semanal de como está o progresso do time em relação as tecnologias.
+15/04/2025 | Time não realizar as tarefas determinadas pelo Tech Lead a cada iteração | Alta | João Pedro | Vigente | Utilização de ferramentas de agenda que motivem o time a focarem em suas respectivas tarefas
