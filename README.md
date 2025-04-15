@@ -21,7 +21,7 @@ A linguagem utilizada para tanto frontend como backend é o Typescript, feita pe
 
 A equipe possui um bom entendimento a cerca da linguagem, tendo feito alguns projetos para portfólio e agregar no conhecimento da linguagem.
 
-O framework escolhido pela equipe foi NestJs no backend e a biblioteca React como Frontend.
+O framework escolhido pela equipe foi NestJs no backend e a biblioteca Angular como Frontend.
 
 ## Tutorial
 
