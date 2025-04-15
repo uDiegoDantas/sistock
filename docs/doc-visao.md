@@ -2,7 +2,7 @@
 
 ## Descrição do Projeto
 
-O projeto tem como base o controle de estoque simples, que poderia ser utilizado num mercado ou loja qualquer.
+O projeto tem como base o controle de estoque simples, que poderia ser utilizado num mercado ou loja qualquer. Nesse sistema, os usuários podem realizar operaçõe CRUD - **C**reate, **R**ead, **U**pdate e **D**elete com as entidades Categoria, Produto, Estoque, Usuários e Log.
 
 ## Equipe e Definição de Papéis
 
@@ -28,7 +28,8 @@ O sistema poderá ser utilizado por apenas um usuário.
 
 Perfil                                 | Descrição   |
 ---------                              | ----------- |
-Administrador | Este usuário realiza os cadastros de novos admnistratores e podem realizar qualquer função. 
+Administrador | Este usuário realiza os cadastros de novos usuários e podem realizar qualquer função. 
+Funcionário | Este usuário pode realizar funções com as entidades de Produtos, Estoque, Categorias e Logs. 
 
 ## Lista de Requisitos Funcionais
 
@@ -101,6 +102,7 @@ erDiagram
         string name
         string login
         string password
+        boolean isAdmin
     }
 
     CATEGORIA {
@@ -158,3 +160,5 @@ Tabela com o mapeamento dos riscos do projeto, as possíveis soluções e os res
 
 Data | Risco | Prioridade | Responsável | Status | Providência/Solução |
 ------ | ------ | ------ | ------ | ------ | ------ |
+15/04/2025 | Time não aprender ou demorar a aprender corretamente as tecnologias utilizadas no projeto | Alta | João Pedro | Vigente | Aulas, explicação de código e checagem semanal de como está o progresso do time em relação as tecnologias.
+15/04/2025 | Time não realizar as tarefas determinadas pelo Tech Lead a cada iteração | Alta | João Pedro | Vigente | Utilização de ferramentas de agenda que motivem o time a focarem em suas respectivas tarefas
