@@ -2,7 +2,7 @@
 
 ## Descrição do Projeto
 
-O projeto tem como base o controle de estoque simples, que poderia ser utilizado num mercado ou loja qualquer.
+O projeto tem como base o controle de estoque simples, que poderia ser utilizado num mercado ou loja qualquer. Nesse sistema, os usuários podem realizar operaçõe CRUD - **C**reate, **R**ead, **U**pdate e **D**elete com as entidades Categoria, Produto, Estoque, Usuários e Log.
 
 ## Equipe e Definição de Papéis
 
