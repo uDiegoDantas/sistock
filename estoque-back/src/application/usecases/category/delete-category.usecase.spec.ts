@@ -7,7 +7,7 @@ describe('DeleteCategoryUseCase', () => {
     const categoryRepository = new InMemoryCategoryRepository();
     const deleteCategory = new DeleteCategoryUseCase(categoryRepository);
 
-    categoryRepository.create(makeCategory());
+    await categoryRepository.create(makeCategory());
     const category = categoryRepository.categories[0];
 
     await deleteCategory.execute(category.id!);
