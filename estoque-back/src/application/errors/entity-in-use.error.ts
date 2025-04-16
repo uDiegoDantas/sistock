@@ -1,4 +1,4 @@
-export class EntityInUseException extends Error {
+export class EntityInUseError extends Error {
   constructor(entityName = 'entity') {
     super(`This ${entityName} is in use.`);
   }
