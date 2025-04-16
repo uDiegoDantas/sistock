@@ -32,10 +32,12 @@ export class PrismaCategoryRepository implements CategoryRepository {
     );
   }
 
-  async create(category: Category): Promise<void> {
-    await this.prismaService.category.create({
-      data: PrismaCategoryMapper.toPrisma(category),
-    });
+  async create(category: Category): Promise<Category> {
+    return PrismaCategoryMapper.toDomain(
+      await this.prismaService.category.create({
+        data: PrismaCategoryMapper.toPrisma(category),
+      }),
+    );
   }
 
   async update(id: number, name: string): Promise<Category> {

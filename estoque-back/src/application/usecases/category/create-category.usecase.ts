@@ -27,8 +27,6 @@ export class CreateCategoryUseCase {
       name,
     });
 
-    await this.categoryRepository.create(category);
-
-    return category;
+    return this.categoryRepository.create(category);
   }
 }

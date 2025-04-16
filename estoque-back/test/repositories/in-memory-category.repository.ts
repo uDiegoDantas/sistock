@@ -19,7 +19,7 @@ export class InMemoryCategoryRepository implements CategoryRepository {
     return this.categories;
   }
 
-  async create(newCategory: Category): Promise<void> {
+  async create(newCategory: Category): Promise<Category> {
     if (
       this.categories.find((category) => category.name === newCategory.name)
     ) {
@@ -28,6 +28,8 @@ export class InMemoryCategoryRepository implements CategoryRepository {
     newCategory.id = InMemoryCategoryRepository.count;
     InMemoryCategoryRepository.count++;
     this.categories.push(newCategory);
+
+    return newCategory;
   }
 
   async update(id: number, name: string): Promise<Category> {
