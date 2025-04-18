@@ -27,6 +27,8 @@ const config: Config = {
     './src/enums/*',
     './src/infra/*',
     './test/factories/*',
+    './src/main.ts',
+    './jest.config.ts',
   ],
 };
 
