@@ -1,0 +1,17 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em 2em;
+  background: rgb(190, 220, 246);
+  font-weight: 600;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 5px;
+}
+
+.home {
+  display: flex;
+  align-items: center;
+}
