@@ -9,6 +9,7 @@ import { ListCategoriesUseCase } from '@application/usecases/category/list-categ
 import { UpdateCategoryUseCase } from '@application/usecases/category/update-category.usecase';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { FindCategoryContainingNameUseCase } from '@application/usecases/category/find-category-containing-name.usecase';
 @Module({
   imports: [DatabaseModule],
   controllers: [CategoryController],
@@ -18,6 +19,7 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
     ListCategoriesUseCase,
     FindCategoryByIdUseCase,
     FindCategoryByNameUseCase,
+    FindCategoryContainingNameUseCase,
     UpdateCategoryUseCase,
     DeleteCategoryUseCase,
   ],

@@ -15,6 +15,10 @@ export class InMemoryCategoryRepository implements CategoryRepository {
     return category ?? null;
   }
 
+  async findContainingName(name: string): Promise<Category[]> {
+    return this.categories.filter((category) => category.name.includes(name));
+  }
+
   async list(): Promise<Category[]> {
     return this.categories;
   }
@@ -35,13 +39,6 @@ export class InMemoryCategoryRepository implements CategoryRepository {
   async update(id: number, name: string): Promise<Category> {
     const index = this.categories.findIndex((ctegory) => ctegory.id === id);
     if (index == -1) throw new Error('Category not found');
-
-    const categoryExists = this.categories.find(
-      (ctegory) => ctegory.name === name,
-    );
-    if (categoryExists) {
-      throw new EntityAlreadyExistsError('Category');
-    }
 
     this.categories[index].name = name;
 
