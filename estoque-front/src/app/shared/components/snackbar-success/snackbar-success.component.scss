@@ -1,0 +1,36 @@
+.first-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.status-message {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  color: #347E50;
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.close-button-success {
+  display: block;
+}
+
+.message-content {
+  font-weight: 500;
+}
+
+.message-content,
+.close-icon {
+  color: #347E50;
+}
+
+.progress-bar {
+  color: black !important;
+  background-color: black !important;
+}
+
+.progress-bar {
+  margin-top: 20px;
+}

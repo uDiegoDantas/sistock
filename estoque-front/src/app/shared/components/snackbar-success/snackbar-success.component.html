@@ -1,0 +1,17 @@
+<div>
+  <div class="first-line">
+    <div class="status-message">
+      <mat-icon>check_circle</mat-icon>
+      <span>Sucesso</span>
+    </div>
+    <button class="close-button-success" mat-button matSnackBarAction (click)="snackBarRef.dismissWithAction()">
+      <mat-icon class="close-icon" >close</mat-icon>
+    </button>
+  </div>
+  <div class="message-content">
+    <span>{{ message }}</span>
+  </div>
+  <div class="progress-bar">
+    <mat-progress-bar [value]="progressBarValue" ></mat-progress-bar>
+  </div>
+</div>
