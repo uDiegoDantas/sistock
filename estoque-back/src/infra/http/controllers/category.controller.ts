@@ -85,7 +85,7 @@ export class CategoryController {
       await this.deleteCategoryByIdUseCase.execute(id);
     } catch (err: any) {
       if (err.code === 'P2003') {
-        throw new EntityInUseError('category');
+        throw new EntityInUseError('categoria');
       }
       console.log(err);
     }

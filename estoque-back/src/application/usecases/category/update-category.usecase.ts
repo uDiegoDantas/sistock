@@ -19,7 +19,7 @@ export class UpdateCategoryUseCase {
   async execute(request: UpdateCategoryRequest): Promise<Category> {
     const categoryExists = await this.findCategoryByName.execute(request.name);
     if (categoryExists && categoryExists.id != request.id) {
-      throw new EntityAlreadyExistsError('Category');
+      throw new EntityAlreadyExistsError('Categoria');
     }
 
     return this.categoryRepository.update(request.id, request.name);

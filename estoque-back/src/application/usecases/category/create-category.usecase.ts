@@ -20,7 +20,7 @@ export class CreateCategoryUseCase {
 
     const categoryExists = await this.findCategoryByName.execute(name);
     if (categoryExists) {
-      throw new EntityAlreadyExistsError('Category');
+      throw new EntityAlreadyExistsError('Categoria');
     }
 
     const category = new Category({

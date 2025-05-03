@@ -1,5 +1,5 @@
 export class EntityNotFoundError extends Error {
   constructor(entityName: string = 'Entity') {
-    super(`${entityName} not found.`);
+    super(`${entityName} não encontrado(a).`);
   }
 }

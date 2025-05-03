@@ -1,6 +1,7 @@
 import { Category } from '@application/entities/category';
 
 export abstract class CategoryRepository {
+  abstract findContainingName(name: string): Promise<Category[]>;
   abstract findById(id: number): Promise<Category | null>;
   abstract findByName(name: string): Promise<Category | null>;
   abstract list(): Promise<Category[]>;

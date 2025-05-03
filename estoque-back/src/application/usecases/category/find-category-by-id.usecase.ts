@@ -10,7 +10,7 @@ export class FindCategoryByIdUseCase {
   async execute(id: number): Promise<Category> {
     const category = await this.categoryRepository.findById(id);
     if (!category) {
-      throw new EntityNotFoundError('Category');
+      throw new EntityNotFoundError('Categoria');
     }
     return category;
   }
