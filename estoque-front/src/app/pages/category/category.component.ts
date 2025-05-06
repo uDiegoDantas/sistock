@@ -56,8 +56,10 @@ export class CategoryComponent implements OnInit {
     this.form.get('name')?.valueChanges.subscribe((value) => {
       if (value) {
         this.filteredCategories = this.categories.filter((category) =>
-          category.name.toLowerCase().includes(value.toLowerCase())
+          category.name.toLowerCase().includes(value.trim().toLowerCase())
         );
+      } else {
+        this.filteredCategories = this.categories;
       }
     });
   }
