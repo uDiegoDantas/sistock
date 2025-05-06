@@ -27,7 +27,7 @@ export class InMemoryCategoryRepository implements CategoryRepository {
     if (
       this.categories.find((category) => category.name === newCategory.name)
     ) {
-      throw new EntityAlreadyExistsError('Category');
+      throw new EntityAlreadyExistsError('Categoria');
     }
     newCategory.id = InMemoryCategoryRepository.count;
     InMemoryCategoryRepository.count++;
