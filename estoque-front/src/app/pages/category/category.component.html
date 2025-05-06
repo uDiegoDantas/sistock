@@ -1,0 +1,26 @@
+<div class="main">
+  <div class="input">
+    <form [formGroup]="form">
+      <mat-form-field>
+        <mat-label>Categoria</mat-label>
+        <input matInput [formControlName]="'name'" />
+      </mat-form-field>
+    </form>
+    <div class="filter">
+      <button (click)="clearSearch()" mat-mini-fab>
+        <mat-icon>filter_alt_off</mat-icon>
+      </button>
+      <button (click)="insertDialog()" mat-mini-fab>
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="main-categories">
+    @for (category of filteredCategories; track category.id) {
+    <p>
+      <span class="category" (click)="editDialog(category)">{{ category.name }}</span>
+    </p>
+    }
+  </div>
+</div>
