@@ -21,12 +21,12 @@ import {
 @Controller('category')
 export class CategoryController {
   constructor(
-    private createCategoryUseCase: CreateCategoryUseCase,
-    private listAllCategoriesUseCase: ListCategoriesUseCase,
-    private findCategoryByIdUseCase: FindCategoryByIdUseCase,
-    private findCategoryContainingNameUseCase: FindCategoryContainingNameUseCase,
-    private deleteCategoryByIdUseCase: DeleteCategoryUseCase,
-    private updateCategoryUseCase: UpdateCategoryUseCase,
+    private readonly createCategoryUseCase: CreateCategoryUseCase,
+    private readonly listAllCategoriesUseCase: ListCategoriesUseCase,
+    private readonly findCategoryByIdUseCase: FindCategoryByIdUseCase,
+    private readonly findCategoryContainingNameUseCase: FindCategoryContainingNameUseCase,
+    private readonly deleteCategoryByIdUseCase: DeleteCategoryUseCase,
+    private readonly updateCategoryUseCase: UpdateCategoryUseCase,
   ) {}
 
   @Get()
@@ -69,7 +69,7 @@ export class CategoryController {
     return new ReturnCategoryDto(
       await this.updateCategoryUseCase.execute({
         id,
-        name: body.name,
+        ...body,
       }),
     );
   }

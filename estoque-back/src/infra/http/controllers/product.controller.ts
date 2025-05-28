@@ -7,6 +7,7 @@ import { FindProductByIdUseCase } from '@application/usecases/product/find-produ
 import { FindProductByNameUseCase } from '@application/usecases/product/find-product-by-name.usecase';
 import { ListProductsUseCase } from '@application/usecases/product/list-products.usecase';
 import { UpdateProductUseCase } from '@application/usecases/product/update-product.usecase';
+import { CreateStockUseCase } from '@application/usecases/stock/create-stock.usecase';
 import { CreateProductDto } from '@infra/dto/create-product.dto';
 import { ReturnProductDto } from '@infra/dto/return-product.dto';
 import {
@@ -18,24 +19,30 @@ import {
   Param,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
 
 @Controller('product')
 export class ProductController {
   constructor(
-    private findCategoryByIdUseCase: FindCategoryByIdUseCase,
-    private createProductUseCase: CreateProductUseCase,
-    private listAllProductsUseCase: ListProductsUseCase,
-    private findProductByIdUseCase: FindProductByIdUseCase,
-    private findProductByNameUseCase: FindProductByNameUseCase,
-    private findProductByCategoryUseCase: FindProductByCategory,
-    private deleteProductByIdUseCase: DeleteProductUsecase,
-    private updateProductUseCase: UpdateProductUseCase,
+    private readonly findCategoryByIdUseCase: FindCategoryByIdUseCase,
+
+    private readonly createProductUseCase: CreateProductUseCase,
+    private readonly listAllProductsUseCase: ListProductsUseCase,
+    private readonly findProductByIdUseCase: FindProductByIdUseCase,
+    private readonly findProductByNameUseCase: FindProductByNameUseCase,
+    private readonly findProductByCategoryUseCase: FindProductByCategory,
+    private readonly deleteProductByIdUseCase: DeleteProductUsecase,
+    private readonly updateProductUseCase: UpdateProductUseCase,
+
+    private readonly createStockUseCase: CreateStockUseCase,
   ) {}
 
   @Get()
-  async list(): Promise<ReturnProductDto[]> {
-    return (await this.listAllProductsUseCase.execute()).map(
+  async list(
+    @Query('includeInactives') includeInactives: boolean,
+  ): Promise<ReturnProductDto[]> {
+    return (await this.listAllProductsUseCase.execute(includeInactives)).map(
       (product) => new ReturnProductDto(product),
     );
   }
@@ -65,21 +72,24 @@ export class ProductController {
 
   @Post()
   async create(@Body() body: CreateProductDto): Promise<ReturnProductDto> {
-    await this.findCategoryByIdUseCase.execute(body.categoryId);
+    const product = await this.createProductUseCase.execute(body);
 
-    return new ReturnProductDto(await this.createProductUseCase.execute(body));
+    await this.createStockUseCase.execute({
+      productId: product.id!,
+      quantity: 0,
+    });
+
+    return new ReturnProductDto(product);
   }
 
   @Put(':id')
   async update(
     @Param('id') id: number,
-
     @Body() body: CreateProductDto,
   ): Promise<ReturnProductDto> {
     id = Number(id);
 
     await this.findProductByIdUseCase.execute(id);
-    await this.findCategoryByIdUseCase.execute(body.categoryId);
 
     return new ReturnProductDto(
       await this.updateProductUseCase.execute({
