@@ -1,10 +1,8 @@
 import { Product, ProductProps } from '@application/entities/product';
-
 import { ProductRepository } from '@application/repositories/product.repository';
 
 export class InMemoryProductRepository implements ProductRepository {
   public products: Product[] = [];
-
   public static count = 0;
 
   async findByCategory(categoryId: number): Promise<Product[]> {
@@ -25,9 +23,7 @@ export class InMemoryProductRepository implements ProductRepository {
 
   async create(newProduct: Product): Promise<Product> {
     newProduct.id = InMemoryProductRepository.count;
-
     InMemoryProductRepository.count++;
-
     this.products.push(newProduct);
 
     return newProduct;
@@ -35,7 +31,6 @@ export class InMemoryProductRepository implements ProductRepository {
 
   async update(id: number, props: ProductProps): Promise<Product> {
     const index = this.products.findIndex((product) => product.id === id);
-
     if (index == -1) {
       throw new Error('Product not found');
     }
