@@ -2,22 +2,18 @@ import { Category } from './category';
 
 export interface ProductProps {
   name: string;
-
   price: number;
-
+  isActive: boolean;
   category?: Category;
-
   categoryId: number;
 }
 
 export class Product {
   private _id?: number;
-
   private props: ProductProps;
 
   constructor(props: ProductProps, id?: number) {
     this._id = id ?? undefined;
-
     this.props = props;
   }
 
@@ -44,14 +40,12 @@ export class Product {
   public set price(price: number) {
     this.props.price = price;
   }
-
   get category(): Category | undefined {
     return this.props.category;
   }
 
   public set category(category: Category) {
     this.props.category = category;
-
     if (category.id) this.props.categoryId = category.id;
   }
 
@@ -61,5 +55,13 @@ export class Product {
 
   public set categoryId(categoryId: number) {
     this.props.categoryId = categoryId;
+  }
+
+  public get isActive(): boolean {
+    return this.props.isActive;
+  }
+
+  public set isActive(isActive: boolean) {
+    this.props.isActive = isActive;
   }
 }
