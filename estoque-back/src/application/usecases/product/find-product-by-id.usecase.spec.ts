@@ -10,6 +10,7 @@ describe('FindProductById', () => {
 
     await productRepository.create(makeProduct());
     await productRepository.create(makeProduct('another_name'));
+
     const products = await productRepository.list();
     const product = await findProductById.execute(products[1].id!);
 
