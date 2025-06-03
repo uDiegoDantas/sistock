@@ -1,7 +1,5 @@
 import { InMemoryProductRepository } from '@test/repositories/in-memory-product.repository';
-
 import { FindProductByCategory } from './find-product-by-category.usecase';
-
 import { makeProduct } from '@test/factories/product.factory';
 
 describe('FindProductByCategoryUsecase', () => {

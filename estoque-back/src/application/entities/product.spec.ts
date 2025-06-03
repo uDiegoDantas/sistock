@@ -7,8 +7,8 @@ describe('Product', () => {
       name: 'any_name',
       categoryId: 0,
       price: 25.5,
+      isActive: true,
     });
-
     expect(product).toBeTruthy();
   });
 
@@ -17,6 +17,7 @@ describe('Product', () => {
       name: 'any_name',
       categoryId: 0,
       price: 25.5,
+      isActive: true,
     });
 
     expect(product.id).toBeUndefined();
@@ -28,11 +29,14 @@ describe('Product', () => {
       name: 'any_name',
       categoryId: 0,
       price: 25.5,
+      isActive: true,
     });
-
     const name = 'another_name';
     const price = 12.75;
-    const anotherCategory = new Category({ name: 'another_category' }, 1);
+    const anotherCategory = new Category(
+      { name: 'another_category', isActive: true },
+      1,
+    );
 
     product.name = name;
     product.price = price;

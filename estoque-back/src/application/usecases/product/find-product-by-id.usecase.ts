@@ -9,11 +9,9 @@ export class FindProductByIdUseCase {
 
   async execute(id: number): Promise<Product> {
     const product = await this.productRepository.findById(id);
-
     if (!product) {
       throw new EntityNotFoundError('Produto');
     }
-
     return product;
   }
 }

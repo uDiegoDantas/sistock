@@ -6,7 +6,7 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class PrismaProductRepository implements ProductRepository {
-  constructor(private prismaService: PrismaService) {}
+  constructor(private readonly prismaService: PrismaService) {}
 
   async findById(id: number): Promise<Product | null> {
     const raw = await this.prismaService.product.findUnique({
@@ -73,7 +73,6 @@ export class PrismaProductRepository implements ProductRepository {
 
   async update(id: number, props: ProductProps): Promise<Product> {
     const product = new Product(props, id);
-
     const raw = await this.prismaService.product.update({
       where: {
         id,
