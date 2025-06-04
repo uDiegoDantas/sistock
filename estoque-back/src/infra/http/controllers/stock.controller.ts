@@ -1,3 +1,4 @@
+import { CreateLogUseCase } from '@application/usecases/log/create-log.usecase';
 import { FindProductByIdUseCase } from '@application/usecases/product/find-product-by-id.usecase';
 import { CreateStockUseCase } from '@application/usecases/stock/create-stock.usecase';
 import { FindStockByIdUseCase } from '@application/usecases/stock/find-stock-by-id.usecase';
@@ -19,6 +20,8 @@ export class StockController {
     private readonly findStockByProductUseCase: FindStockByProductUseCase,
     private readonly updateStockUseCase: UpdateStockUseCase,
     private readonly findProductByIdUseCase: FindProductByIdUseCase,
+
+    private readonly createLogUseCase: CreateLogUseCase,
   ) {}
 
   @Get()
@@ -62,6 +65,11 @@ export class StockController {
       stock,
       body.quantity,
     );
+    await this.createLogUseCase.execute({
+      date: new Date(),
+      quantity: updatedStock.quantity - stock.quantity,
+      stock,
+    });
 
     return new ReturnStockDto(updatedStock);
   }
