@@ -24,10 +24,15 @@ import { FindStockByIdUseCase } from '@application/usecases/stock/find-stock-by-
 import { FindStockByProductUseCase } from '@application/usecases/stock/find-stock-by-product.usecase';
 import { ListStockUseCase } from '@application/usecases/stock/list-stock.usecase';
 import { UpdateStockUseCase } from '@application/usecases/stock/update-stock.usecase';
+import { LogController } from './controllers/log.controller';
+import { CreateLogUseCase } from '@application/usecases/log/create-log.usecase';
+import { FindLogByIdUseCase } from '@application/usecases/log/find-log-by-id.usecase';
+import { FindLogByStock } from '@application/usecases/log/find-log-by-stock.usecase';
+import { ListLogUseCase } from '@application/usecases/log/list-logs.usecase';
 
 @Module({
   imports: [DatabaseModule],
-  controllers: [CategoryController, ProductController, StockController,],
+  controllers: [CategoryController, ProductController, StockController, LogController,],
   providers: [
     { provide: APP_INTERCEPTOR, useClass: ErrorInterceptor },
     CreateCategoryUseCase,
@@ -51,6 +56,11 @@ import { UpdateStockUseCase } from '@application/usecases/stock/update-stock.use
     FindStockByIdUseCase,
     FindStockByProductUseCase,
     UpdateStockUseCase,
+
+    CreateLogUseCase,
+    FindLogByIdUseCase,
+    FindLogByStock,
+    ListLogUseCase,
   ],
 })
 export class HttpModule {}
