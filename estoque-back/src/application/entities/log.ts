@@ -1,10 +1,13 @@
 import { Stock } from '@application/entities/stock';
+import { Account } from './account';
 
 export interface LogProps {
   date: Date;
   stockId: number;
   stock?: Stock;
   quantity: number;
+  accountId: number;
+  account?: Account;
 }
 
 export class Log {
@@ -41,6 +44,22 @@ export class Log {
     this.props.stockId = stockId;
   }
 
+  public get account(): Account | undefined {
+    return this.props.account;
+  }
+
+  public set account(account: Account) {
+    this.props.account = account;
+    if (account.id) this.props.accountId = account.id;
+  }
+
+  public get accountId(): number {
+    return this.props.accountId;
+  }
+
+  public set accountId(accountId: number) {
+    this.props.accountId = accountId;
+  }
 
   public get quantity(): number {
     return this.props.quantity;
