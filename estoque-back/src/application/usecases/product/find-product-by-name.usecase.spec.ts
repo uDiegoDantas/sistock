@@ -15,8 +15,8 @@ describe('FindProductByNameUseCase', () => {
     ];
 
     for (const product of products) await repository.create(product);
-    const foundsProduct = await findByName.execute('name');
 
+    const foundsProduct = await findByName.execute('name');
     expect(foundsProduct).toEqual(products.slice(1));
   });
 
@@ -31,8 +31,8 @@ describe('FindProductByNameUseCase', () => {
     ];
 
     for (const product of products) await repository.create(product);
-    const foundsProduct = await findByName.execute('invalid_name');
 
+    const foundsProduct = await findByName.execute('invalid_name');
     expect(foundsProduct).toEqual([]);
   });
 });
