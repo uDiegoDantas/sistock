@@ -10,6 +10,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Account {
+  id       Int     @id @default(autoincrement())
+  name     String  @unique
+  password String
+  userType Int
+  isActive Boolean
+  Log      Log[]
+}
+
 model Category {
   id       Int       @id @default(autoincrement())
   name     String    @unique
@@ -41,4 +50,6 @@ model Log {
   stock     Stock    @relation(fields: [stockId], references: [id])
   stockId   Int
   date      DateTime
+  Account   Account  @relation(fields: [accountId], references: [id])
+  accountId Int
 }
