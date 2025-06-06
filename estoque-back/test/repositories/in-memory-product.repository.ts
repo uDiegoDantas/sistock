@@ -1,28 +1,54 @@
-import { Log } from '@application/entities/log';
-import { LogRepository } from '@application/repositories/log.repository';
+import { Product, ProductProps } from '@application/entities/product';
+import { ProductRepository } from '@application/repositories/product.repository';
 
-export class InMemoryLogRepository implements LogRepository {
-  public logs: Log[] = [];
+export class InMemoryProductRepository implements ProductRepository {
+  public products: Product[] = [];
   public static count = 0;
 
-  async findById(id: number): Promise<Log | null> {
-    const stock = this.logs.find((stock) => stock.id === id);
-    return stock ?? null;
+  async findByCategory(categoryId: number): Promise<Product[]> {
+    return this.products.filter((product) => product.categoryId == categoryId);
   }
 
-  async findByStock(stockId: number): Promise<Log[]> {
-    return this.logs.filter((stock) => stock.stockId == stockId);
+  async findById(id: number): Promise<Product | null> {
+    return this.products.find((product) => product.id === id) || null;
   }
 
-  async list(): Promise<Log[]> {
-    return this.logs;
+  async findAllByName(name: string): Promise<Product[]> {
+    return this.products.filter((product) => product.name.includes(name));
   }
 
-  async create(newLog: Log): Promise<Log> {
-    newLog.id = InMemoryLogRepository.count;
-    InMemoryLogRepository.count++;
-    this.logs.push(newLog);
+  async list(): Promise<Product[]> {
+    return this.products;
+  }
 
-    return newLog;
+  async create(newProduct: Product): Promise<Product> {
+    newProduct.id = InMemoryProductRepository.count;
+    InMemoryProductRepository.count++;
+    this.products.push(newProduct);
+
+    return newProduct;
+  }
+
+  async update(id: number, props: ProductProps): Promise<Product> {
+    const index = this.products.findIndex((product) => product.id === id);
+    if (index == -1) {
+      throw new Error('Product not found');
+    }
+
+    this.products[index].name = props.name;
+    this.products[index].price = props.price;
+    this.products[index].categoryId = props.categoryId;
+
+    return this.products[index];
+  }
+
+  async delete(id: number): Promise<void> {
+    const index = this.products.findIndex((product) => product.id === id);
+
+    if (index === -1) {
+      throw new Error('Product not found');
+    }
+
+    this.products.splice(index, 1);
   }
 }
