@@ -21,6 +21,8 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
+import { Roles } from '../decoretors/roles.decorator';
+import { UserType } from 'src/enums/user-type.enum';
 
 @Controller('product')
 export class ProductController {
@@ -38,6 +40,7 @@ export class ProductController {
     private readonly createStockUseCase: CreateStockUseCase,
   ) {}
 
+  @Roles(UserType.Admin, UserType.User)
   @Get()
   async list(
     @Query('includeInactives') includeInactives: boolean,
@@ -47,6 +50,7 @@ export class ProductController {
     );
   }
 
+  @Roles(UserType.Admin, UserType.User)
   @Get('byName/:name')
   async findByName(@Param('name') name: string): Promise<ReturnProductDto[]> {
     return (await this.findProductByNameUseCase.execute(name)).map(
@@ -54,6 +58,7 @@ export class ProductController {
     );
   }
 
+  @Roles(UserType.Admin, UserType.User)
   @Get(':id')
   async findById(@Param('id') id: number): Promise<ReturnProductDto> {
     return new ReturnProductDto(
@@ -61,6 +66,7 @@ export class ProductController {
     );
   }
 
+  @Roles(UserType.Admin, UserType.User)
   @Get('byCategory/:categoryId')
   async findByCategory(
     @Param('categoryId') categoryId: number,
@@ -70,6 +76,7 @@ export class ProductController {
     ).map((product) => new ReturnProductDto(product));
   }
 
+  @Roles(UserType.Admin)
   @Post()
   async create(@Body() body: CreateProductDto): Promise<ReturnProductDto> {
     const product = await this.createProductUseCase.execute(body);
@@ -82,6 +89,7 @@ export class ProductController {
     return new ReturnProductDto(product);
   }
 
+  @Roles(UserType.Admin)
   @Put(':id')
   async update(
     @Param('id') id: number,
@@ -99,6 +107,7 @@ export class ProductController {
     );
   }
 
+  @Roles(UserType.Admin)
   @Delete(':id')
   @HttpCode(204)
   async delete(@Param('id') id: number): Promise<void> {
