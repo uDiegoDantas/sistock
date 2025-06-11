@@ -17,6 +17,8 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
+import { Roles } from '../decoretors/roles.decorator';
+import { UserType } from 'src/enums/user-type.enum';
 
 @Controller('category')
 export class CategoryController {
@@ -29,6 +31,7 @@ export class CategoryController {
     private readonly updateCategoryUseCase: UpdateCategoryUseCase,
   ) {}
 
+  @Roles(UserType.User, UserType.Admin)
   @Get()
   async list(): Promise<ReturnCategoryDto[]> {
     return (await this.listAllCategoriesUseCase.execute()).map(
@@ -36,6 +39,7 @@ export class CategoryController {
     );
   }
 
+  @Roles(UserType.User, UserType.Admin)
   @Get(':id')
   async findById(@Param('id') id: number): Promise<ReturnCategoryDto> {
     return new ReturnCategoryDto(
@@ -43,6 +47,7 @@ export class CategoryController {
     );
   }
 
+  @Roles(UserType.User, UserType.Admin)
   @Get('byName/:name')
   async findByName(@Param('name') name: string): Promise<ReturnCategoryDto[]> {
     return (await this.findCategoryContainingNameUseCase.execute(name)).map(
@@ -50,6 +55,7 @@ export class CategoryController {
     );
   }
 
+  @Roles(UserType.Admin)
   @Post()
   async create(@Body() body: CreateCategoryDto): Promise<ReturnCategoryDto> {
     return new ReturnCategoryDto(
@@ -57,6 +63,7 @@ export class CategoryController {
     );
   }
 
+  @Roles(UserType.Admin)
   @Put(':id')
   async update(
     @Param('id') id: number,
@@ -74,6 +81,7 @@ export class CategoryController {
     );
   }
 
+  @Roles(UserType.Admin)
   @Delete(':id')
   @HttpCode(204)
   async delete(@Param('id') id: number): Promise<void> {

@@ -1,7 +1,5 @@
 import { InMemoryProductRepository } from '@test/repositories/in-memory-product.repository';
-
 import { DeleteProductUsecase } from './delete-product.usecase';
-
 import { makeProduct } from '@test/factories/product.factory';
 
 describe('DeleteProductUseCase', () => {

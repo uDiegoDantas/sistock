@@ -7,6 +7,7 @@ describe('Log', () => {
       stockId: 0,
       quantity: 25,
       date: new Date(),
+      accountId: 1,
     });
     expect(log).toBeTruthy();
   });
@@ -23,6 +24,7 @@ describe('Log', () => {
         stockId,
         quantity,
         date,
+        accountId,
       },
       id,
     );
@@ -38,6 +40,7 @@ describe('Log', () => {
       stockId: 0,
       quantity: 25.5,
       date: new Date(),
+      accountId: 1,
     });
 
     const anotherStock = makeStock({});
