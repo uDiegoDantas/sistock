@@ -34,12 +34,12 @@ import { MatSelectModule } from '@angular/material/select';
     MatSelectModule,
   ],
   templateUrl: './product-form.component.html',
-  styleUrl: './product-form.component.scss',
 })
-export class ProductFormComponent implements OnInit {
+export class ProductDetailComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    @Optional() private dialogRef: MatDialogRef<ProductFormComponent>,
+    @Optional()
+    private readonly dialogRef: MatDialogRef<ProductDetailComponent>,
     private readonly categoryService: CategoryService,
     private readonly utilsService: UtilsService
   ) {}
@@ -61,7 +61,7 @@ export class ProductFormComponent implements OnInit {
   getCategories(): void {
     this.categoryService.list().subscribe({
       next: (categories) => {
-        this.categories = categories;
+        this.categories = categories.filter((category) => category.isActive);
       },
       error: () => this.utilsService.onError('Erro ao carregar categorias!'),
     });
@@ -69,39 +69,39 @@ export class ProductFormComponent implements OnInit {
 
   createForm(): void {
     this.form = new FormGroup({
-      name: new FormControl(this.product?.name || '', [
+      name: new FormControl(this.product?.name ?? '', [
         Validators.required,
         Validators.maxLength(60),
       ]),
-      price: new FormControl(this.product?.price || null, [
+      price: new FormControl(this.product?.price ?? null, [
         Validators.required,
         Validators.min(1),
         Validators.max(10000),
       ]),
-      category: new FormControl({value: this.product?.category.id || null, disabled: false}, [
-        Validators.required,
-      ]),
+      category: new FormControl(
+        { value: this.product?.category.id ?? null, disabled: false },
+        [Validators.required]
+      ),
+      isActive: new FormControl(
+        { value: this.product?.isActive, disabled: false },
+        Validators.required
+      ),
     });
   }
 
   submit(): void {
     if (this.form.invalid) return;
 
-    const { name, price, category } = this.form.getRawValue();
+    const { name, price, category, isActive } = this.form.getRawValue();
 
     const request = {
       name,
       price,
       categoryId: category,
+      isActive,
     };
 
     this.dialogRef.close(request);
-  }
-
-  remove(): void {
-    if (!this.product) return;
-
-    this.dialogRef.close({ removeId: this.product.id });
   }
 
   get name() {
@@ -110,6 +110,10 @@ export class ProductFormComponent implements OnInit {
 
   get price() {
     return this.form.get('price')!;
+  }
+
+  get isActive() {
+    return this.form.get('isActive')!;
   }
 
   get category() {
