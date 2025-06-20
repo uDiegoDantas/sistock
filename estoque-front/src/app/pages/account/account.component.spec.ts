@@ -47,5 +47,13 @@ describe('AccountComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should call getAccounts on init', () => {
+    accountServiceSpy.list.and.returnValue(of(mockAccounts));
+    component.ngOnInit();
+    expect(accountServiceSpy.list).toHaveBeenCalled();
+    expect(component.accounts.length).toBe(2);
+    expect(component.filteredAccounts.length).toBe(1);
+  });
+
   
 });
