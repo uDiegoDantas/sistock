@@ -123,4 +123,18 @@ describe('AccountComponent', () => {
 
     expect(accountServiceSpy.delete).not.toHaveBeenCalled();
   });
+
+    it('should handle insert error', async () => {
+    accountServiceSpy.list.and.returnValue(of([]));
+    accountServiceSpy.create.and.returnValue(
+      throwError(() => ({
+        error: { message: 'Erro mock' },
+      }))
+    );
+    utilsServiceSpy.openDialog.and.resolveTo(mockAccounts[0]);
+
+    await component.insertDialog();
+
+    expect(utilsServiceSpy.onError).toHaveBeenCalledWith('Erro mock');
+  });
 });
