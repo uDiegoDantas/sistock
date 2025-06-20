@@ -64,4 +64,12 @@ describe('AccountComponent', () => {
     expect(component.filteredAccounts.length).toBe(2);
   });
 
+  it('should filter accounts on search', () => {
+    accountServiceSpy.list.and.returnValue(of(mockAccounts));
+    component.ngOnInit();
+    component.form.get('name')?.setValue('adm');
+    expect(component.filteredAccounts.length).toBe(1);
+    expect(component.filteredAccounts[0].name).toBe('Admin');
+  });
+
 });
