@@ -48,4 +48,18 @@ describe('AccountService', () => {
     expect(request.request.urlWithParams).toBe(`${accountService['baseUrl']}`);
     request.flush(accountMock);
   });
+
+  it('Teste rota listar', () => {
+    const expectedUrl = `${accountService['baseUrl']}/all`;
+
+    accountService.list().subscribe((accounts) => {
+      expect(accounts).toBe(accountsMock);
+    });
+
+    const request = httpTestingController.expectOne(expectedUrl);
+
+    expect(request.request.method).toBe('GET');
+    expect(request.request.urlWithParams).toBe(expectedUrl);
+    request.flush(accountsMock);
+  });
 });
