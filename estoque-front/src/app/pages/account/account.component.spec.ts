@@ -72,4 +72,12 @@ describe('AccountComponent', () => {
     expect(component.filteredAccounts[0].name).toBe('Admin');
   });
 
+  it('should clear search and disable onlyActives', () => {
+    accountServiceSpy.list.and.returnValue(of(mockAccounts));
+    component.ngOnInit();
+    component.clearSearch();
+    expect(component.form.get('name')?.value).toBeNull();
+    expect(component.filteredAccounts.length).toBe(2);
+    expect(component.onlyActives()).toBeFalse();
+  });
 });
