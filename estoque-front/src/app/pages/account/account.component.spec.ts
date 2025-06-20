@@ -80,4 +80,16 @@ describe('AccountComponent', () => {
     expect(component.filteredAccounts.length).toBe(2);
     expect(component.onlyActives()).toBeFalse();
   });
+
+  it('should open insertDialog and call insert if account is new', async () => {
+    accountServiceSpy.list.and.returnValue(of([]));
+    accountServiceSpy.create.and.returnValue(of(mockAccounts[0]));
+    utilsServiceSpy.openDialog.and.resolveTo(mockAccounts[0]);
+    component.ngOnInit();
+
+    await component.insertDialog();
+
+    expect(accountServiceSpy.create).toHaveBeenCalledWith(mockAccounts[0]);
+    expect(snackbarServiceSpy.open).toHaveBeenCalledWith('Conta cadastrada com sucesso!');
+  }); 
 });
