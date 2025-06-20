@@ -32,5 +32,20 @@ describe('AccountService', () => {
   it('should be created', () => {
     expect(accountService).toBeTruthy();
   });
-  
+
+   it('Teste rota byId', () => {
+    const accountMock = accountsMock[0];
+    const id = accountMock.id;
+
+    accountService.findLoggedAccount().subscribe((account) => {
+      expect(account).toEqual(accountMock);
+      expect(account.id).toEqual(id);
+    });
+
+    const request = httpTestingController.expectOne(`${accountService['baseUrl']}`);
+
+    expect(request.request.method).toBe('GET');
+    expect(request.request.urlWithParams).toBe(`${accountService['baseUrl']}`);
+    request.flush(accountMock);
+  });
 });
