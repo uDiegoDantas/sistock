@@ -151,4 +151,17 @@ describe('AccountComponent', () => {
 
     expect(utilsServiceSpy.onError).toHaveBeenCalledWith('Erro ao inserir conta');
   });
+
+    it('should handle delete error', async () => {
+    accountServiceSpy.delete.and.returnValue(
+      throwError(() => ({
+        error: { message: 'Erro ao deletar' },
+      }))
+    );
+    utilsServiceSpy.openDialog.and.resolveTo(true);
+
+    await component.remove(1);
+
+    expect(utilsServiceSpy.onError).toHaveBeenCalledWith('Erro ao deletar');
+  });
 });
