@@ -92,4 +92,15 @@ describe('AccountComponent', () => {
     expect(accountServiceSpy.create).toHaveBeenCalledWith(mockAccounts[0]);
     expect(snackbarServiceSpy.open).toHaveBeenCalledWith('Conta cadastrada com sucesso!');
   }); 
+
+    it('should not insert if account already exists', async () => {
+    accountServiceSpy.list.and.returnValue(of([mockAccounts[0]]));
+    component.ngOnInit();
+    utilsServiceSpy.openDialog.and.resolveTo(mockAccounts[0]);
+
+    await component.insertDialog();
+
+    expect(accountServiceSpy.create).not.toHaveBeenCalled();
+    expect(utilsServiceSpy.onError).toHaveBeenCalledWith('Já existe uma conta cadastrada com esse nome.');
+  });  
 });
