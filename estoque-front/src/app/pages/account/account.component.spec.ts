@@ -137,4 +137,18 @@ describe('AccountComponent', () => {
 
     expect(utilsServiceSpy.onError).toHaveBeenCalledWith('Erro mock');
   });
+
+    it('should handle insert error with default message', async () => {
+    accountServiceSpy.list.and.returnValue(of([]));
+    accountServiceSpy.create.and.returnValue(
+      throwError(() => ({
+        error: { message: null }
+      }))
+    );
+    utilsServiceSpy.openDialog.and.resolveTo(mockAccounts[0]);
+
+    await component.insertDialog();
+
+    expect(utilsServiceSpy.onError).toHaveBeenCalledWith('Erro ao inserir conta');
+  });
 });
