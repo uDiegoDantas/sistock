@@ -55,5 +55,13 @@ describe('AccountComponent', () => {
     expect(component.filteredAccounts.length).toBe(1);
   });
 
-  
+  it('should return all accounts with onlyActives disables', () => {
+    accountServiceSpy.list.and.returnValue(of(mockAccounts));
+    component.onlyActives.set(false);
+    component.getAccounts();
+    expect(accountServiceSpy.list).toHaveBeenCalled();
+    expect(component.accounts.length).toBe(2);
+    expect(component.filteredAccounts.length).toBe(2);
+  });
+
 });
