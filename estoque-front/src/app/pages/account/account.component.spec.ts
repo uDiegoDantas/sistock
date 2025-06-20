@@ -103,4 +103,16 @@ describe('AccountComponent', () => {
     expect(accountServiceSpy.create).not.toHaveBeenCalled();
     expect(utilsServiceSpy.onError).toHaveBeenCalledWith('Já existe uma conta cadastrada com esse nome.');
   });  
+
+  it('should call delete and refresh list on confirmation', async () => {
+    accountServiceSpy.list.and.returnValue(of(mockAccounts));
+    accountServiceSpy.delete.and.returnValue(of(void 0));
+    component.ngOnInit();
+    utilsServiceSpy.openDialog.and.resolveTo(true);
+
+    await component.remove(1);
+
+    expect(accountServiceSpy.delete).toHaveBeenCalledWith(1);
+    expect(snackbarServiceSpy.open).toHaveBeenCalledWith('Conta deletada com sucesso!');
+  });
 });
