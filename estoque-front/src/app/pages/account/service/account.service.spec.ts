@@ -62,4 +62,22 @@ describe('AccountService', () => {
     expect(request.request.urlWithParams).toBe(expectedUrl);
     request.flush(accountsMock);
   });
+
+    it('Teste rota editar', () => {
+    const accountMock = accountsMock[0];
+
+    const id = accountMock.id;
+    const expectedUrl = `${accountService['baseUrl']}`;
+
+    accountService.edit(accountRequestMock).subscribe((account) => {
+      expect(account).toBe(accountMock);
+      expect(account.id).toBe(id);
+    });
+
+    const request = httpTestingController.expectOne(expectedUrl);
+
+    expect(request.request.method).toBe('PUT');
+    expect(request.request.urlWithParams).toBe(expectedUrl);
+    request.flush(accountMock);
+  });
 });
