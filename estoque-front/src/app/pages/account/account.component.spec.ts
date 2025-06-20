@@ -115,4 +115,12 @@ describe('AccountComponent', () => {
     expect(accountServiceSpy.delete).toHaveBeenCalledWith(1);
     expect(snackbarServiceSpy.open).toHaveBeenCalledWith('Conta deletada com sucesso!');
   });
+
+  it('should not delete if dialog is cancelled', async () => {
+    utilsServiceSpy.openDialog.and.resolveTo(false);
+
+    await component.remove(1);
+
+    expect(accountServiceSpy.delete).not.toHaveBeenCalled();
+  });
 });
