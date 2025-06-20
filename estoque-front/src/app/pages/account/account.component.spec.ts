@@ -164,4 +164,17 @@ describe('AccountComponent', () => {
 
     expect(utilsServiceSpy.onError).toHaveBeenCalledWith('Erro ao deletar');
   });
+
+    it('should handle delete error with default message', async () => {
+    accountServiceSpy.delete.and.returnValue(
+      throwError(() => ({
+        error: { message: null },
+      }))
+    );
+    utilsServiceSpy.openDialog.and.resolveTo(true);
+
+    await component.remove(1);
+
+    expect(utilsServiceSpy.onError).toHaveBeenCalledWith('Erro ao deletar conta');
+  });
 });
