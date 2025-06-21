@@ -80,4 +80,21 @@ describe('AccountService', () => {
     expect(request.request.urlWithParams).toBe(expectedUrl);
     request.flush(accountMock);
   });
+
+  it('Teste rota criar', () => {
+    const accountMock = accountsMock[0];
+
+    const expectedUrl = `${accountService['baseUrl']}`;
+
+    accountService.create(accountMock).subscribe((account) => {
+      expect(account).toBe(accountMock);
+      expect(account.id).toBe(accountMock.id);
+    });
+
+    const request = httpTestingController.expectOne(expectedUrl);
+
+    expect(request.request.method).toBe('POST');
+    expect(request.request.urlWithParams).toBe(expectedUrl);
+    request.flush(accountMock);
+  });
 });
