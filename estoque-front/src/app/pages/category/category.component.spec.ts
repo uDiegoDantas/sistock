@@ -142,4 +142,16 @@ describe('CategoryComponent', () => {
     expect(categoryServiceSpy.edit).toHaveBeenCalledWith(mockCategories[0].id, result);
     expect(snackbarSpy.open).toHaveBeenCalledWith('Categoria atualizada com sucesso!');
   });
+
+  it('should delete category if removeId is passed in edit dialog result', async () => {
+    const result = { removeId: 1 };
+    categoryServiceSpy.delete.and.returnValue(of(void 0));
+    categoryServiceSpy.list.and.returnValue(of([]));
+    utilsSpy.openDialog.and.resolveTo(result);
+
+    await component.editDialog(mockCategories[0]);
+
+    expect(categoryServiceSpy.delete).toHaveBeenCalledWith(1);
+    expect(snackbarSpy.open).toHaveBeenCalledWith('Categoria deletada com sucesso!');
+  });
 });
