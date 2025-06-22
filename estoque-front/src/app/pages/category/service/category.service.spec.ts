@@ -90,4 +90,18 @@ describe('CategoryService', () => {
     expect(request.request.urlWithParams).toBe(expectedUrl);
     request.flush(categoryMock);
   }); 
+
+  it('Teste rota deletar', () => {
+    const id = 0;
+    const expectedUrl = `${categoryService['categoryBaseUrl']}/${id}`;
+
+    categoryService.delete(id).subscribe((category) => {
+      expect(category).toBeNull();
+    });
+
+    const request = httpTestingController.expectOne(expectedUrl);
+
+    expect(request.request.method).toBe('DELETE');
+    expect(request.request.urlWithParams).toBe(expectedUrl);
+  });
 });
