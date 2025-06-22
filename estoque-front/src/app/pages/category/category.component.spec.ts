@@ -107,5 +107,16 @@ describe('CategoryComponent', () => {
 
     expect(categoryServiceSpy.create).not.toHaveBeenCalled();
     expect(utilsSpy.onError).toHaveBeenCalledWith('Já existe uma categoria cadastrada com esse nome.');
-  });  
+  });
+
+  it('should handle error on insert', async () => {
+    categoryServiceSpy.list.and.returnValue(of([]));
+    categoryServiceSpy.create.and.returnValue(throwError(() => ({ error: { message: 'Erro!' } })));
+    utilsSpy.openDialog.and.resolveTo(mockCategories[0]);
+
+    component.ngOnInit();
+    await component.insertDialog();
+
+    expect(utilsSpy.onError).toHaveBeenCalledWith('Erro!');
+  });
 });
