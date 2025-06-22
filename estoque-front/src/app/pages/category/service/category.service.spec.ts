@@ -73,5 +73,21 @@ describe('CategoryService', () => {
     expect(request.request.urlWithParams).toBe(expectedUrl);
     request.flush(categoryMock);
   });
- 
+
+  it('Teste rota criar', () => {
+    const categoryMock = categorysMock[0];
+
+    const expectedUrl = `${categoryService['categoryBaseUrl']}`;
+
+    categoryService.create(categoryMock).subscribe((category) => {
+      expect(category).toBe(categoryMock);
+      expect(category.id).toBe(categoryMock.id);
+    });
+
+    const request = httpTestingController.expectOne(expectedUrl);
+
+    expect(request.request.method).toBe('POST');
+    expect(request.request.urlWithParams).toBe(expectedUrl);
+    request.flush(categoryMock);
+  }); 
 });
