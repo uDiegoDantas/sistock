@@ -37,5 +37,14 @@ describe('CategoryDetailComponent', () => {
     expect(component.form).toBeDefined();
     expect(component.name.value).toBe('Alimentos');
     expect(component.isActive.value).toBe(true);
-  });  
+  });
+
+    it('should create without category data', () => {
+    createComponentWithData(null);
+
+    expect(component).toBeTruthy();
+    expect(component.form).toBeDefined();
+    expect(component.name.value).toBe('');
+    expect(component.isActive.value).toBeUndefined();
+  });
 });
