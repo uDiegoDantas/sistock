@@ -79,4 +79,10 @@ describe('LogComponent', () => {
     expect(stocksSpy).toHaveBeenCalled();
     expect(formSpy).toHaveBeenCalled();
   });
+
+  it('should call getLogs and set logs', () => {
+    logServiceSpy.list.and.returnValue(of(mockLogs));
+    component.getLogs();
+    expect(component.logs.length).toBe(1);
+  });
 });
