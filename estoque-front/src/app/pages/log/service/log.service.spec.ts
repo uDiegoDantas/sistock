@@ -29,4 +29,20 @@ describe('LogService', () => {
   it('should be created', () => {
     expect(logService).toBeTruthy();
   });
+
+  it('Teste rota byId', () => {
+    const logMock = logsMock[0];
+    const id = logMock.id;
+
+    logService.findById(id).subscribe((log) => {
+      expect(log).toEqual(logMock);
+      expect(log.id).toEqual(id);
+    });
+
+    const request = httpTestingController.expectOne(`${logService['logBaseUrl']}?id=${id}`);
+
+    expect(request.request.method).toBe('GET');
+    expect(request.request.urlWithParams).toBe(`${logService['logBaseUrl']}?id=${id}`);
+    request.flush(logMock);
+  });
 });
