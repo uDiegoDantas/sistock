@@ -73,4 +73,11 @@ describe('CategoryDetailComponent', () => {
 
     expect(dialogRefSpy.close).not.toHaveBeenCalled();
   });
+
+  it('should return controls via getters', () => {
+    createComponentWithData(mockCategory);
+
+    expect(component.name).toBe(component.form.get('name')!);
+    expect(component.isActive).toBe(component.form.get('isActive')!);
+  });
 });
