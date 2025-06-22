@@ -92,4 +92,13 @@ describe('LogComponent', () => {
     expect(component.stocks.length).toBe(2);
     expect(component.filteredStocks.length).toBe(2);
   });
+
+  it('should handle error in search', () => {
+    component.createForm();
+    component.stock.setValue({ id: 12 });
+    logServiceSpy.findByStock.and.returnValue(throwError(() => ({ error: { message: 'Erro ao buscar' } })));
+
+    component.search();
+    expect(utilsServiceSpy.onError).toHaveBeenCalledWith('Erro ao buscar');
+  });
 });
