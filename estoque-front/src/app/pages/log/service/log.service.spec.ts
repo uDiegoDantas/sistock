@@ -1,0 +1,32 @@
+import { TestBed } from '@angular/core/testing';
+
+import { provideHttpClient } from '@angular/common/http';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import { LogService } from './log.service';
+import { Log } from '../../../shared/models/log';
+
+describe('LogService', () => {
+  let logService: LogService;
+  let httpTestingController: HttpTestingController;
+
+  const account = { id: 0, isActive: true, name: '', userType: 0 };
+  const category = { id: 1, isActive: true, name: '' };
+  const product = { category, id: 1, isActive: true, name: '', price: 12 };
+  const stock = { id: 1, product, quantity: 12 };
+  const logsMock: Log[] = [
+    { id: 0, account, date: new Date(), quantity: 12, stock },
+    { id: 1, account, date: new Date(), quantity: 12, stock },
+  ];
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [provideHttpClient(), provideHttpClientTesting()],
+    });
+    logService = TestBed.inject(LogService);
+    httpTestingController = TestBed.inject(HttpTestingController);
+  });
+
+  it('should be created', () => {
+    expect(logService).toBeTruthy();
+  });
+});
