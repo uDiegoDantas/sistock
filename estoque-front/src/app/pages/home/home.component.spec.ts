@@ -42,4 +42,12 @@ describe('HomeComponent', () => {
     expect(button).toBeTruthy();
     expect(button.nativeElement.textContent.trim()).toBe('Login');
   });
+
+  it('should NOT show login section when user IS logged in', () => {
+    isLoggedInSubject.next(true);
+    fixture.detectChanges();
+
+    const loginSection = fixture.debugElement.query(By.css('.login'));
+    expect(loginSection).toBeFalsy();
+  });
 });
