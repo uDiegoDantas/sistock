@@ -85,4 +85,11 @@ describe('LogComponent', () => {
     component.getLogs();
     expect(component.logs.length).toBe(1);
   });
+
+  it('should call getStocks and set stocks and filteredStocks', () => {
+    stockServiceSpy.list.and.returnValue(of(mockStocks));
+    component.getStocks();
+    expect(component.stocks.length).toBe(2);
+    expect(component.filteredStocks.length).toBe(2);
+  });
 });
