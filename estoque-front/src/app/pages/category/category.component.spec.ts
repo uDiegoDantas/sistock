@@ -48,4 +48,14 @@ describe('CategoryComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should call getCategories and filter active by default', () => {
+    categoryServiceSpy.list.and.returnValue(of(mockCategories));
+
+    component.ngOnInit();
+
+    expect(categoryServiceSpy.list).toHaveBeenCalled();
+    expect(component.categories.length).toBe(2);
+    expect(component.filteredCategories.length).toBe(1);
+  });
 });
