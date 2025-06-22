@@ -76,4 +76,25 @@ describe('CategoryComponent', () => {
     expect(component.categories.length).toBe(2);
     expect(component.filteredCategories.length).toBe(2);
   });
+
+  it('should clear search and show all categories', () => {
+    categoryServiceSpy.list.and.returnValue(of(mockCategories));
+    component.ngOnInit();
+    component.clearSearch();
+
+    expect(component.filteredCategories.length).toBe(2);
+    expect(component.onlyActives()).toBeFalse();
+  });
+
+  it('should insert new category if it does not already exist', async () => {
+    categoryServiceSpy.list.and.returnValue(of([]));
+    categoryServiceSpy.create.and.returnValue(of(mockCategories[0]));
+    utilsSpy.openDialog.and.resolveTo(mockCategories[0]);
+
+    component.ngOnInit();
+    await component.insertDialog();
+
+    expect(categoryServiceSpy.create).toHaveBeenCalledWith(mockCategories[0]);
+    expect(snackbarSpy.open).toHaveBeenCalledWith('Categoria cadastrada com sucesso!');
+  });
 });
