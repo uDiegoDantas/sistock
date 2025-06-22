@@ -119,4 +119,15 @@ describe('CategoryComponent', () => {
 
     expect(utilsSpy.onError).toHaveBeenCalledWith('Erro!');
   });
+
+  it('should handle error on insert with default message', async () => {
+    categoryServiceSpy.list.and.returnValue(of([]));
+    categoryServiceSpy.create.and.returnValue(throwError(() => ({ error: { message: null } })));
+    utilsSpy.openDialog.and.resolveTo(mockCategories[0]);
+
+    component.ngOnInit();
+    await component.insertDialog();
+
+    expect(utilsSpy.onError).toHaveBeenCalledWith('Erro ao inserir categoria');
+  });
 });
