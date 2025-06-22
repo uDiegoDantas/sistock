@@ -58,4 +58,18 @@ describe('LogService', () => {
     expect(request.request.urlWithParams).toBe(`${logService['logBaseUrl']}/byStock/${stock.id}`);
     request.flush(logsMock);
   });
+
+  it('Teste rota listar', () => {
+    const expectedUrl = `${logService['logBaseUrl']}`;
+
+    logService.list().subscribe((logs) => {
+      expect(logs).toBe(logsMock);
+    });
+
+    const request = httpTestingController.expectOne(expectedUrl);
+
+    expect(request.request.method).toBe('GET');
+    expect(request.request.urlWithParams).toBe(expectedUrl);
+    request.flush(logsMock);
+  });
 });
