@@ -65,4 +65,12 @@ describe('CategoryDetailComponent', () => {
       isActive: true,
     });
   });
+
+  it('should NOT call dialogRef.close when form is invalid', () => {
+    createComponentWithData(null);
+
+    component.submit();
+
+    expect(dialogRefSpy.close).not.toHaveBeenCalled();
+  });
 });
