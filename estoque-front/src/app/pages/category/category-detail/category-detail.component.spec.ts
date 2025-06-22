@@ -47,4 +47,11 @@ describe('CategoryDetailComponent', () => {
     expect(component.name.value).toBe('');
     expect(component.isActive.value).toBeUndefined();
   });
+
+  it('should mark form invalid if required fields are missing', () => {
+    createComponentWithData(null);
+    component.name.setValue('');
+    component.isActive.setValue(null);
+    expect(component.form.invalid).toBeTrue();
+  });
 });
