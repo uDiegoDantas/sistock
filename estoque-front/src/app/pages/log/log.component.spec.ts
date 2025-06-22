@@ -64,4 +64,19 @@ describe('LogComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+ 
+  it('should call getLogs, getStocks and createForm on ngOnInit', () => {
+    const logsSpy = spyOn(component, 'getLogs').and.callThrough();
+    const stocksSpy = spyOn(component, 'getStocks').and.callThrough();
+    const formSpy = spyOn(component, 'createForm').and.callThrough();
+
+    logServiceSpy.list.and.returnValue(of([]));
+    stockServiceSpy.list.and.returnValue(of([]));
+
+    component.ngOnInit();
+
+    expect(logsSpy).toHaveBeenCalled();
+    expect(stocksSpy).toHaveBeenCalled();
+    expect(formSpy).toHaveBeenCalled();
+  });
 });
