@@ -98,7 +98,6 @@ describe('AccountService', () => {
     request.flush(accountMock);
   });
 
-  
   it('Teste rota deletar', () => {
     const id = 0;
     const expectedUrl = `${accountService['baseUrl']}/${id}`;
