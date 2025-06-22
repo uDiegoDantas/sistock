@@ -66,5 +66,14 @@ describe('CategoryComponent', () => {
 
     expect(component.filteredCategories.length).toBe(1);
     expect(component.filteredCategories[0].name).toBe('Eletrônicos');
-  });  
+  });
+
+  it('should return all categorias with onlyActives disables', () => {
+    categoryServiceSpy.list.and.returnValue(of(mockCategories));
+    component.onlyActives.set(false);
+    component.getCategories();
+    expect(categoryServiceSpy.list).toHaveBeenCalled();
+    expect(component.categories.length).toBe(2);
+    expect(component.filteredCategories.length).toBe(2);
+  });
 });
