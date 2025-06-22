@@ -58,4 +58,13 @@ describe('CategoryComponent', () => {
     expect(component.categories.length).toBe(2);
     expect(component.filteredCategories.length).toBe(1);
   });
+
+  it('should filter categories by name and active', () => {
+    categoryServiceSpy.list.and.returnValue(of(mockCategories));
+    component.ngOnInit();
+    component.form.get('name')?.setValue('ele');
+
+    expect(component.filteredCategories.length).toBe(1);
+    expect(component.filteredCategories[0].name).toBe('Eletrônicos');
+  });  
 });
