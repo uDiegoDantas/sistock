@@ -130,4 +130,16 @@ describe('CategoryComponent', () => {
 
     expect(utilsSpy.onError).toHaveBeenCalledWith('Erro ao inserir categoria');
   });
+
+  it('should edit a category if result has name', async () => {
+    const result = { id: 0, name: 'Atualizado', isActive: true };
+    categoryServiceSpy.edit.and.returnValue(of(result));
+    categoryServiceSpy.list.and.returnValue(of([result]));
+    utilsSpy.openDialog.and.resolveTo(result);
+
+    await component.editDialog(mockCategories[0]);
+
+    expect(categoryServiceSpy.edit).toHaveBeenCalledWith(mockCategories[0].id, result);
+    expect(snackbarSpy.open).toHaveBeenCalledWith('Categoria atualizada com sucesso!');
+  });
 });
