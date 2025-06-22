@@ -97,4 +97,19 @@ describe('AccountService', () => {
     expect(request.request.urlWithParams).toBe(expectedUrl);
     request.flush(accountMock);
   });
+
+  
+  it('Teste rota deletar', () => {
+    const id = 0;
+    const expectedUrl = `${accountService['baseUrl']}/${id}`;
+
+    accountService.delete(id).subscribe((account) => {
+      expect(account).toBeNull();
+    });
+
+    const request = httpTestingController.expectOne(expectedUrl);
+
+    expect(request.request.method).toBe('DELETE');
+    expect(request.request.urlWithParams).toBe(expectedUrl);
+  });
 });
