@@ -54,4 +54,15 @@ describe('CategoryDetailComponent', () => {
     component.isActive.setValue(null);
     expect(component.form.invalid).toBeTrue();
   });
+
+  it('should call dialogRef.close with form value when valid', () => {
+    createComponentWithData(mockCategory);
+
+    component.submit();
+
+    expect(dialogRefSpy.close).toHaveBeenCalledWith({
+      name: 'Alimentos',
+      isActive: true,
+    });
+  });
 });
