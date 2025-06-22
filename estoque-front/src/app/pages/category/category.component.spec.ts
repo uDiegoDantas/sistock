@@ -164,4 +164,14 @@ describe('CategoryComponent', () => {
 
     expect(utilsSpy.onError).toHaveBeenCalledWith('Falha');
   });
+
+  it('should handle error on edit with default message', async () => {
+    const result = { name: 'Erro', isActive: true };
+    categoryServiceSpy.edit.and.returnValue(throwError(() => ({ error: { message: null } })));
+    utilsSpy.openDialog.and.resolveTo(result);
+
+    await component.editDialog(mockCategories[0]);
+
+    expect(utilsSpy.onError).toHaveBeenCalledWith('Erro ao atualizar categoria');
+  });
 });
