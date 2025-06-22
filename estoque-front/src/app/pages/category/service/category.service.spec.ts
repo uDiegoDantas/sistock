@@ -55,4 +55,23 @@ describe('CategoryService', () => {
     expect(request.request.urlWithParams).toBe(expectedUrl);
     request.flush(categorysMock);
   });  
+
+   it('Teste rota editar', () => {
+    const categoryMock = categorysMock[0];
+
+    const id = categoryMock.id;
+    const expectedUrl = `${categoryService['categoryBaseUrl']}/${id}`;
+
+    categoryService.edit(id, categoryMock).subscribe((category) => {
+      expect(category).toBe(categoryMock);
+      expect(category.id).toBe(id);
+    });
+
+    const request = httpTestingController.expectOne(expectedUrl);
+
+    expect(request.request.method).toBe('PUT');
+    expect(request.request.urlWithParams).toBe(expectedUrl);
+    request.flush(categoryMock);
+  });
+ 
 });
