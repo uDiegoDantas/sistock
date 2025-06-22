@@ -97,4 +97,15 @@ describe('CategoryComponent', () => {
     expect(categoryServiceSpy.create).toHaveBeenCalledWith(mockCategories[0]);
     expect(snackbarSpy.open).toHaveBeenCalledWith('Categoria cadastrada com sucesso!');
   });
+
+  it('should not insert if category already exists', async () => {
+    categoryServiceSpy.list.and.returnValue(of([mockCategories[0]]));
+    utilsSpy.openDialog.and.resolveTo(mockCategories[0]);
+
+    component.ngOnInit();
+    await component.insertDialog();
+
+    expect(categoryServiceSpy.create).not.toHaveBeenCalled();
+    expect(utilsSpy.onError).toHaveBeenCalledWith('Já existe uma categoria cadastrada com esse nome.');
+  });  
 });
