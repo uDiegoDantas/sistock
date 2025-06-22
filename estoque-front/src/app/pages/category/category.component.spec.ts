@@ -191,4 +191,17 @@ describe('CategoryComponent', () => {
 
     expect(utilsSpy.onError).toHaveBeenCalledWith('Erro ao deletar categoria');
   });
+
+  it('should filter only active categories when onlyActives is true', () => {
+    categoryServiceSpy.list.and.returnValue(of(mockCategories));
+    component.ngOnInit();
+
+    component.filteredCategories = mockCategories;
+    component.onlyActives.set(true);
+
+    component.toggleIsActive();
+
+    expect(component.filteredCategories.length).toBe(1);
+    expect(component.filteredCategories[0].isActive).toBeTrue();
+  });
 });
