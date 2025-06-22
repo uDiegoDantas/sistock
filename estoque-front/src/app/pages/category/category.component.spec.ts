@@ -68,7 +68,7 @@ describe('CategoryComponent', () => {
     expect(component.filteredCategories[0].name).toBe('Eletrônicos');
   });
 
-  it('should return all categorias with onlyActives disables', () => {
+    it('should return all categorias with onlyActives disables', () => {
     categoryServiceSpy.list.and.returnValue(of(mockCategories));
     component.onlyActives.set(false);
     component.getCategories();
@@ -76,6 +76,7 @@ describe('CategoryComponent', () => {
     expect(component.categories.length).toBe(2);
     expect(component.filteredCategories.length).toBe(2);
   });
+
 
   it('should clear search and show all categories', () => {
     categoryServiceSpy.list.and.returnValue(of(mockCategories));
@@ -173,5 +174,21 @@ describe('CategoryComponent', () => {
     await component.editDialog(mockCategories[0]);
 
     expect(utilsSpy.onError).toHaveBeenCalledWith('Erro ao atualizar categoria');
+  });
+
+  it('should handle error on delete', () => {
+    categoryServiceSpy.delete.and.returnValue(throwError(() => ({ error: { message: 'Erro delete' } })));
+
+    (component as any).remove(1);
+
+    expect(utilsSpy.onError).toHaveBeenCalledWith('Erro delete');
+  });
+
+  it('should handle error on delete', () => {
+    categoryServiceSpy.delete.and.returnValue(throwError(() => ({ error: { message: null } })));
+
+    (component as any).remove(1);
+
+    expect(utilsSpy.onError).toHaveBeenCalledWith('Erro ao deletar categoria');
   });
 });
