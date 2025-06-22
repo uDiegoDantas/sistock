@@ -1,0 +1,51 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CategoryComponent } from './category.component';
+import { Category } from '../../shared/models/category';
+import { of, throwError } from 'rxjs';
+import { CategoryService } from './service/category.service';
+import { SnackbarService } from '../../shared/services/snackbar.service';
+import { UtilsService } from '../../shared/services/utils.service';
+import { AuthService } from '../../shared/services/auth.service';
+
+describe('CategoryComponent', () => {
+  let component: CategoryComponent;
+  let fixture: ComponentFixture<CategoryComponent>;
+
+  let categoryServiceSpy: jasmine.SpyObj<CategoryService>;
+  let snackbarSpy: jasmine.SpyObj<SnackbarService>;
+  let utilsSpy: jasmine.SpyObj<UtilsService>;
+  let authServiceStub: Partial<AuthService>;
+
+  const mockCategories: Category[] = [
+    { id: 1, name: 'Eletrônicos', isActive: true },
+    { id: 2, name: 'Alimentos', isActive: false },
+  ];
+
+  beforeEach(() => {
+    categoryServiceSpy = jasmine.createSpyObj('CategoryService', ['list', 'create', 'edit', 'delete']);
+    snackbarSpy = jasmine.createSpyObj('SnackbarService', ['open']);
+    utilsSpy = jasmine.createSpyObj('UtilsService', ['openDialog', 'onError']);
+    authServiceStub = { isAdmin$: of(true) };
+
+    TestBed.configureTestingModule({
+      imports: [CategoryComponent],
+      providers: [
+        { provide: CategoryService, useValue: categoryServiceSpy },
+        { provide: SnackbarService, useValue: snackbarSpy },
+        { provide: UtilsService, useValue: utilsSpy },
+        { provide: AuthService, useValue: authServiceStub },
+      ],
+    });
+
+    fixture = TestBed.createComponent(CategoryComponent);
+    component = fixture.componentInstance;
+  });
+
+  afterEach(() => {
+    fixture?.destroy();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
