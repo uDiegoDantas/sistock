@@ -50,4 +50,14 @@ describe('HomeComponent', () => {
     const loginSection = fixture.debugElement.query(By.css('.login'));
     expect(loginSection).toBeFalsy();
   });
+
+  it('should display correct title and subtitle', () => {
+    fixture.detectChanges();
+
+    const h1 = fixture.debugElement.query(By.css('h1'));
+    const h2 = fixture.debugElement.query(By.css('h2'));
+
+    expect(h1.nativeElement.textContent.trim()).toBe('Sis Estoque');
+    expect(h2.nativeElement.textContent.trim()).toBe('Seja bem-vindo ao sistema de estoque!');
+  });
 });
