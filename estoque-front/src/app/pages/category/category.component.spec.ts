@@ -204,4 +204,18 @@ describe('CategoryComponent', () => {
     expect(component.filteredCategories.length).toBe(1);
     expect(component.filteredCategories[0].isActive).toBeTrue();
   });
+
+  it('should filter categories by name when onlyActives is false', () => {
+    categoryServiceSpy.list.and.returnValue(of(mockCategories));
+    component.ngOnInit();
+
+    component.categories = mockCategories;
+    component.onlyActives.set(false);
+    component.form.get('name')?.setValue('ali'); // "Alimentos"
+
+    component.toggleIsActive();
+
+    expect(component.filteredCategories.length).toBe(1);
+    expect(component.filteredCategories[0].name).toContain('Alimentos');
+  });
 });
