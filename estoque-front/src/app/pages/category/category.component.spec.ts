@@ -154,4 +154,14 @@ describe('CategoryComponent', () => {
     expect(categoryServiceSpy.delete).toHaveBeenCalledWith(1);
     expect(snackbarSpy.open).toHaveBeenCalledWith('Categoria deletada com sucesso!');
   });
+
+  it('should handle error on edit', async () => {
+    const result = { name: 'Erro', isActive: true };
+    categoryServiceSpy.edit.and.returnValue(throwError(() => ({ error: { message: 'Falha' } })));
+    utilsSpy.openDialog.and.resolveTo(result);
+
+    await component.editDialog(mockCategories[0]);
+
+    expect(utilsSpy.onError).toHaveBeenCalledWith('Falha');
+  });
 });
