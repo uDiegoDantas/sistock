@@ -101,4 +101,13 @@ describe('LogComponent', () => {
     component.search();
     expect(utilsServiceSpy.onError).toHaveBeenCalledWith('Erro ao buscar');
   });
+
+  it('should handle error in search with default message', () => {
+    component.createForm();
+    component.stock.setValue({ id: 12 });
+    logServiceSpy.findByStock.and.returnValue(throwError(() => ({ error: { message: null } })));
+
+    component.search();
+    expect(utilsServiceSpy.onError).toHaveBeenCalledWith('Erro ao listar logs!');
+  });
 });
