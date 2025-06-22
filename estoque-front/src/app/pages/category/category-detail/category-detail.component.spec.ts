@@ -29,5 +29,13 @@ describe('CategoryDetailComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   }
-  
+
+   it('should create with category data', () => {
+    createComponentWithData(mockCategory);
+
+    expect(component).toBeTruthy();
+    expect(component.form).toBeDefined();
+    expect(component.name.value).toBe('Alimentos');
+    expect(component.isActive.value).toBe(true);
+  });  
 });
