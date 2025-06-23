@@ -152,4 +152,12 @@ describe('LogComponent', () => {
     expect(logServiceSpy.findByStock).toHaveBeenCalledWith(1);
     expect(component.logs.length).toBe(1);
   });
+
+  it('should fallback to getLogs on search() with no stock selected', () => {
+    component.createForm();
+    component.stock.setValue(null);
+    logServiceSpy.list.and.returnValue(of(mockLogs));
+    component.search();
+    expect(logServiceSpy.list).toHaveBeenCalled();
+  });
 });
