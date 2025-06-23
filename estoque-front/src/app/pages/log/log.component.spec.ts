@@ -177,4 +177,26 @@ describe('LogComponent', () => {
     const result = component.displayStock(null as any);
     expect(result).toBe('');
   });
+
+  it('should call openDialog in viewDialog()', async () => {
+    await component.viewDialog(mockLogs[0]);
+    expect(utilsServiceSpy.openDialog).toHaveBeenCalledWith(
+      jasmine.objectContaining({
+        component: jasmine.any(Function),
+        data: { log: mockLogs[0] },
+      })
+    );
+  });
+
+  it('should filter stocks by name with filter()', () => {
+    component.stocks = mockStocks;
+
+    component.productInput = {
+      nativeElement: { value: 'teclado' } as HTMLInputElement,
+    };
+
+    component.filter();
+    expect(component.filteredStocks.length).toBe(1);
+    expect(component.filteredStocks[0].product.name).toBe('Teclado');
+  });
 });
