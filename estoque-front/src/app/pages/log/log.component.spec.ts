@@ -160,4 +160,11 @@ describe('LogComponent', () => {
     component.search();
     expect(logServiceSpy.list).toHaveBeenCalled();
   });
+
+  it('should call getLogs on clearSearch()', () => {
+    logServiceSpy.list.and.returnValue(of(mockLogs));
+    component.createForm();
+    component.clearSearch();
+    expect(component.logs.length).toBe(1);
+  });
 });
