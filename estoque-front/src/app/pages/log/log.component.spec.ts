@@ -110,4 +110,16 @@ describe('LogComponent', () => {
     component.search();
     expect(utilsServiceSpy.onError).toHaveBeenCalledWith('Erro ao listar logs!');
   });
+
+  it('should handle error in getLogs', () => {
+    logServiceSpy.list.and.returnValue(throwError(() => ({ error: { message: 'Erro Logs' } })));
+    component.getLogs();
+    expect(utilsServiceSpy.onError).toHaveBeenCalledWith('Erro Logs');
+  });
+
+  it('should handle error in getLogs with default message', () => {
+    logServiceSpy.list.and.returnValue(throwError(() => ({ error: { message: null } })));
+    component.getLogs();
+    expect(utilsServiceSpy.onError).toHaveBeenCalledWith('Erro ao carregar logs!');
+  });
 });
