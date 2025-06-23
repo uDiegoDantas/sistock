@@ -140,4 +140,16 @@ describe('LogComponent', () => {
     expect(component.form).toBeDefined();
     expect(component.form.get('stock')).toBeDefined();
   });
+
+  it('should filter logs by selected stock on search()', () => {
+    const selectedStock = { id: 1 };
+    component.createForm();
+    component.stock.setValue(selectedStock);
+
+    logServiceSpy.findByStock.and.returnValue(of(mockLogs));
+
+    component.search();
+    expect(logServiceSpy.findByStock).toHaveBeenCalledWith(1);
+    expect(component.logs.length).toBe(1);
+  });
 });
