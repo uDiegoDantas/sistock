@@ -122,4 +122,16 @@ describe('LogComponent', () => {
     component.getLogs();
     expect(utilsServiceSpy.onError).toHaveBeenCalledWith('Erro ao carregar logs!');
   });
+
+  it('should handle error in getStocks', () => {
+    stockServiceSpy.list.and.returnValue(throwError(() => ({ error: { message: 'Erro Stocks' } })));
+    component.getStocks();
+    expect(utilsServiceSpy.onError).toHaveBeenCalledWith('Erro Stocks');
+  });
+
+  it('should handle error in getStocks with default message', () => {
+    stockServiceSpy.list.and.returnValue(throwError(() => ({ error: { message: null } })));
+    component.getStocks();
+    expect(utilsServiceSpy.onError).toHaveBeenCalledWith('Erro ao carregar produtos!');
+  });
 });
