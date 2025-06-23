@@ -134,4 +134,10 @@ describe('LogComponent', () => {
     component.getStocks();
     expect(utilsServiceSpy.onError).toHaveBeenCalledWith('Erro ao carregar produtos!');
   });
+
+  it('should create form on createForm()', () => {
+    component.createForm();
+    expect(component.form).toBeDefined();
+    expect(component.form.get('stock')).toBeDefined();
+  });
 });
