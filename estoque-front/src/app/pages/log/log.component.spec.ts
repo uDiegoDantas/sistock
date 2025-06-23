@@ -167,4 +167,14 @@ describe('LogComponent', () => {
     component.clearSearch();
     expect(component.logs.length).toBe(1);
   });
+
+  it('should display product name in displayStock()', () => {
+    const result = component.displayStock(mockStocks[0]);
+    expect(result).toBe('Mouse');
+  });
+
+  it('should return empty string for displayStock(null)', () => {
+    const result = component.displayStock(null as any);
+    expect(result).toBe('');
+  });
 });
