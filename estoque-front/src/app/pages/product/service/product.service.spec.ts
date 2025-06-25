@@ -37,3 +37,24 @@ describe('ProductService', () => {
       expect(product).toEqual(productMock);
       expect(product.id).toEqual(id);
     });
+
+    const request = httpTestingController.expectOne(`${productService['productBaseUrl']}?id=${id}`);
+
+    expect(request.request.method).toBe('GET');
+    expect(request.request.urlWithParams).toBe(`${productService['productBaseUrl']}?id=${id}`);
+    request.flush(productMock);
+  });
+
+  it('Teste rota listar', () => {
+    const expectedUrl = `${productService['productBaseUrl']}`;
+
+    productService.list().subscribe((products) => {
+      expect(products).toBe(productsMock);
+    });
+
+    const request = httpTestingController.expectOne(expectedUrl);
+
+    expect(request.request.method).toBe('GET');
+    expect(request.request.urlWithParams).toBe(expectedUrl);
+    request.flush(productsMock);
+  });
