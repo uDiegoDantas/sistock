@@ -63,3 +63,9 @@ describe('StockComponent', () => {
 
     expect(dialogRefSpy.close).not.toHaveBeenCalled();
   });
+
+  it('should provide getter for quantity form control', () => {
+    fixture.detectChanges();
+    expect(component.quantity).toBe(component.form.get('quantity')!);
+  });
+});
