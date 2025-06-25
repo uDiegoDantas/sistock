@@ -52,3 +52,15 @@ describe('ViewProductComponent', () => {
   it('should load stock on init', () => {
     stockServiceSpy.findByProduct.and.returnValue(of(stock));
     fixture.detectChanges();
+
+    expect(stockServiceSpy.findByProduct).toHaveBeenCalledWith(product.id);
+    expect(component.stock).toEqual(stock);
+  });
+
+  it('should call utilsService.onError on stock load error', () => {
+    const errorResponse = { error: { message: 'Erro customizado' } };
+    stockServiceSpy.findByProduct.and.returnValue(throwError(() => errorResponse));
+    fixture.detectChanges();
+
+    expect(utilsServiceSpy.onError).toHaveBeenCalledWith('Erro customizado');
+  });
