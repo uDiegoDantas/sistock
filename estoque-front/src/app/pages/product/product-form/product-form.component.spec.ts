@@ -97,3 +97,19 @@ describe('ProductDetailComponent', () => {
       isActive: false,
     });
   });
+
+  it('should NOT close dialog if form is invalid', () => {
+    categoryServiceSpy.list.and.returnValue(of(fakeCategories));
+    fixture.detectChanges();
+
+    component.form.setValue({
+      name: '',
+      price: 0,
+      category: null,
+      isActive: null,
+    });
+
+    component.submit();
+
+    expect(dialogRefSpy.close).not.toHaveBeenCalled();
+  });
