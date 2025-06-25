@@ -44,3 +44,14 @@ describe('StockComponent', () => {
     expect(component.form.get('productId')?.value).toBe(stock.product.id);
     expect(component.form.get('productId')?.disabled).toBeTrue();
   });
+
+  it('should close dialog with form values on valid submit', () => {
+    fixture.detectChanges();
+    component.form.setValue({ quantity: 15, productId: stock.product.id });
+    component.submit();
+
+    expect(dialogRefSpy.close).toHaveBeenCalledWith({
+      quantity: 15,
+      productId: stock.product.id,
+    });
+  });
