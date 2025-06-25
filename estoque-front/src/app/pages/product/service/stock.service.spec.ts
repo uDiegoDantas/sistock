@@ -1,0 +1,49 @@
+import { TestBed } from '@angular/core/testing';
+
+import { provideHttpClient } from '@angular/common/http';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import { StockService } from './stock.service';
+import { Stock } from '../../../shared/models/stock';
+import { Category } from '../../../shared/models/category';
+import { Product } from '../../../shared/models/product';
+
+describe('StockService', () => {
+  let stockService: StockService;
+  let httpTestingController: HttpTestingController;
+
+  const category: Category = { id: 0, name: 'C1', isActive: true };
+  const product: Product = { id: 0, name: 'p1', category, price: 11, isActive: true };
+  const product2: Product = { id: 1, name: 'p2', category, price: 12, isActive: true };
+
+  const stocksMock: Stock[] = [
+    { id: 0, product, quantity: 2 },
+    { id: 1, product: product2, quantity: 3 },
+  ];
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [provideHttpClient(), provideHttpClientTesting()],
+    });
+    stockService = TestBed.inject(StockService);
+    httpTestingController = TestBed.inject(HttpTestingController);
+  });
+
+  it('should be created', () => {
+    expect(stockService).toBeTruthy();
+  });
+
+  it('Teste rota byId', () => {
+    const stockMock = stocksMock[0];
+    const id = stockMock.id;
+
+    stockService.findById(id).subscribe((stock) => {
+      expect(stock).toEqual(stockMock);
+      expect(stock.id).toEqual(id);
+    });
+
+    const request = httpTestingController.expectOne(`${stockService['stockBaseUrl']}?id=${id}`);
+
+    expect(request.request.method).toBe('GET');
+    expect(request.request.urlWithParams).toBe(`${stockService['stockBaseUrl']}?id=${id}`);
+    request.flush(stockMock);
+  });
