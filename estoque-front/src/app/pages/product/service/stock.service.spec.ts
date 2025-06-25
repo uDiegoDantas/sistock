@@ -61,3 +61,17 @@ describe('StockService', () => {
     expect(request.request.urlWithParams).toBe(expectedUrl);
     request.flush(stocksMock);
   });
+
+  it('Teste rota byProduct', () => {
+    const productId = product.id;
+    const expectedUrl = `${stockService['stockBaseUrl']}/byProduct/${productId}`;
+
+    stockService.findByProduct(productId).subscribe((stock) => {
+      expect(stock).toEqual(stocksMock[0]);
+    });
+
+    const request = httpTestingController.expectOne(expectedUrl);
+
+    expect(request.request.method).toBe('GET');
+    expect(request.request.urlWithParams).toEqual(expectedUrl);
+  });
