@@ -64,3 +64,10 @@ describe('ViewProductComponent', () => {
 
     expect(utilsServiceSpy.onError).toHaveBeenCalledWith('Erro customizado');
   });
+
+  it('should call utilsService.onError with default message if error has no message', () => {
+    stockServiceSpy.findByProduct.and.returnValue(throwError(() => ({})));
+    fixture.detectChanges();
+
+    expect(utilsServiceSpy.onError).toHaveBeenCalledWith('Erro ao carregar estoque!');
+  });
