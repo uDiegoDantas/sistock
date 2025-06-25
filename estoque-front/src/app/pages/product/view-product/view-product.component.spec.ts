@@ -71,3 +71,11 @@ describe('ViewProductComponent', () => {
 
     expect(utilsServiceSpy.onError).toHaveBeenCalledWith('Erro ao carregar estoque!');
   });
+
+  it('should not call findByProduct if product is null', () => {
+    component.data.product = null;
+    fixture.detectChanges();
+
+    expect(stockServiceSpy.findByProduct).not.toHaveBeenCalled();
+  });
+});
