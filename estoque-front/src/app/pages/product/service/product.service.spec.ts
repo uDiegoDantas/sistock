@@ -108,3 +108,18 @@ describe('ProductService', () => {
     expect(request.request.urlWithParams).toBe(expectedUrl);
     request.flush(productMock);
   });
+
+  it('Teste rota deletar', () => {
+    const id = 0;
+    const expectedUrl = `${productService['productBaseUrl']}/${id}`;
+
+    productService.delete(id).subscribe((product) => {
+      expect(product).toBeNull();
+    });
+
+    const request = httpTestingController.expectOne(expectedUrl);
+
+    expect(request.request.method).toBe('DELETE');
+    expect(request.request.urlWithParams).toBe(expectedUrl);
+  });
+});
