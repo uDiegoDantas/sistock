@@ -76,3 +76,24 @@ describe('ProductDetailComponent', () => {
 
     expect(utilsServiceSpy.onError).toHaveBeenCalledWith('Erro ao carregar categorias!');
   });
+
+  it('should close dialog with form data on submit if form is valid', () => {
+    categoryServiceSpy.list.and.returnValue(of(fakeCategories));
+    fixture.detectChanges();
+
+    component.form.setValue({
+      name: 'Nome novo',
+      price: 100,
+      category: 3,
+      isActive: false,
+    });
+
+    component.submit();
+
+    expect(dialogRefSpy.close).toHaveBeenCalledWith({
+      name: 'Nome novo',
+      price: 100,
+      categoryId: 3,
+      isActive: false,
+    });
+  });
