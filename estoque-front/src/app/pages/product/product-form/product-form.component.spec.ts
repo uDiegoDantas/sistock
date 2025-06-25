@@ -113,3 +113,14 @@ describe('ProductDetailComponent', () => {
 
     expect(dialogRefSpy.close).not.toHaveBeenCalled();
   });
+
+  it('should have form controls accessible via getters', () => {
+    categoryServiceSpy.list.and.returnValue(of(fakeCategories));
+    fixture.detectChanges();
+
+    expect(component.name.value).toBe(fakeProduct.name);
+    expect(component.price.value).toBe(fakeProduct.price);
+    expect(component.category.value).toBe(fakeProduct.category.id);
+    expect(component.isActive.value).toBe(fakeProduct.isActive);
+  });
+});
