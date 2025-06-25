@@ -69,3 +69,10 @@ describe('ProductDetailComponent', () => {
     expect(component.categories.length).toBe(2);
     expect(component.categories.every(c => c.isActive)).toBeTrue();
   });
+
+  it('should handle category service error calling utilsService.onError', () => {
+    categoryServiceSpy.list.and.returnValue(throwError(() => new Error('fail')));
+    fixture.detectChanges();
+
+    expect(utilsServiceSpy.onError).toHaveBeenCalledWith('Erro ao carregar categorias!');
+  });
