@@ -55,3 +55,11 @@ describe('StockComponent', () => {
       productId: stock.product.id,
     });
   });
+
+  it('should NOT close dialog on invalid submit', () => {
+    fixture.detectChanges();
+    component.form.setValue({ quantity: -5, productId: stock.product.id });
+    component.submit();
+
+    expect(dialogRefSpy.close).not.toHaveBeenCalled();
+  });
