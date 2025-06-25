@@ -91,3 +91,20 @@ describe('ProductService', () => {
     expect(request.request.urlWithParams).toBe(expectedUrl);
     request.flush(productMock);
   });
+
+  it('Teste rota criar', () => {
+    const productMock = productsMock[0];
+
+    const expectedUrl = `${productService['productBaseUrl']}`;
+
+    productService.create(productMock).subscribe((product) => {
+      expect(product).toBe(productMock);
+      expect(product.id).toBe(productMock.id);
+    });
+
+    const request = httpTestingController.expectOne(expectedUrl);
+
+    expect(request.request.method).toBe('POST');
+    expect(request.request.urlWithParams).toBe(expectedUrl);
+    request.flush(productMock);
+  });
