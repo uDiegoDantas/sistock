@@ -47,3 +47,17 @@ describe('StockService', () => {
     expect(request.request.urlWithParams).toBe(`${stockService['stockBaseUrl']}?id=${id}`);
     request.flush(stockMock);
   });
+
+  it('Teste rota listar', () => {
+    const expectedUrl = `${stockService['stockBaseUrl']}`;
+
+    stockService.list().subscribe((stocks) => {
+      expect(stocks).toBe(stocksMock);
+    });
+
+    const request = httpTestingController.expectOne(expectedUrl);
+
+    expect(request.request.method).toBe('GET');
+    expect(request.request.urlWithParams).toBe(expectedUrl);
+    request.flush(stocksMock);
+  });
