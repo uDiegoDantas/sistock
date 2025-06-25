@@ -58,3 +58,18 @@ describe('ProductService', () => {
     expect(request.request.urlWithParams).toBe(expectedUrl);
     request.flush(productsMock);
   });
+
+  it('Teste rota byCategory', () => {
+    const categoryId = category.id;
+    const expectedUrl = `${productService['productBaseUrl']}/byCategory/${categoryId}`;
+
+    productService.findByCategory(categoryId).subscribe((products) => {
+      expect(products).toBe(productsMock);
+    });
+
+    const request = httpTestingController.expectOne(expectedUrl);
+
+    expect(request.request.method).toBe('GET');
+    expect(request.request.urlWithParams).toBe(expectedUrl);
+    request.flush(productsMock);
+  });
