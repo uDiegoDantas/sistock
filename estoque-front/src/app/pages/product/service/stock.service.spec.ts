@@ -75,3 +75,53 @@ describe('StockService', () => {
     expect(request.request.method).toBe('GET');
     expect(request.request.urlWithParams).toEqual(expectedUrl);
   });
+
+  it('Teste rota editar', () => {
+    const stockMock = stocksMock[0];
+
+    const id = stockMock.id;
+    const expectedUrl = `${stockService['stockBaseUrl']}/${id}`;
+
+    stockService.edit(id, stockMock).subscribe((stock) => {
+      expect(stock).toBe(stockMock);
+      expect(stock.id).toBe(id);
+    });
+
+    const request = httpTestingController.expectOne(expectedUrl);
+
+    expect(request.request.method).toBe('PUT');
+    expect(request.request.urlWithParams).toBe(expectedUrl);
+    request.flush(stockMock);
+  });
+
+  it('Teste rota criar', () => {
+    const stockMock = stocksMock[0];
+
+    const expectedUrl = `${stockService['stockBaseUrl']}`;
+
+    stockService.create(stockMock).subscribe((stock) => {
+      expect(stock).toBe(stockMock);
+      expect(stock.id).toBe(stockMock.id);
+    });
+
+    const request = httpTestingController.expectOne(expectedUrl);
+
+    expect(request.request.method).toBe('POST');
+    expect(request.request.urlWithParams).toBe(expectedUrl);
+    request.flush(stockMock);
+  });
+
+  it('Teste rota deletar', () => {
+    const id = 0;
+    const expectedUrl = `${stockService['stockBaseUrl']}/${id}`;
+
+    stockService.delete(id).subscribe((stock) => {
+      expect(stock).toBeNull();
+    });
+
+    const request = httpTestingController.expectOne(expectedUrl);
+
+    expect(request.request.method).toBe('DELETE');
+    expect(request.request.urlWithParams).toBe(expectedUrl);
+  });
+});
