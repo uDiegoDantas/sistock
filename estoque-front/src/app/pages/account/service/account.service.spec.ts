@@ -33,7 +33,7 @@ describe('AccountService', () => {
     expect(accountService).toBeTruthy();
   });
 
-   it('Teste rota byId', () => {
+  it('Teste rota byId', () => {
     const accountMock = accountsMock[0];
     const id = accountMock.id;
 
@@ -63,7 +63,7 @@ describe('AccountService', () => {
     request.flush(accountsMock);
   });
 
-    it('Teste rota editar', () => {
+  it('Teste rota editar', () => {
     const accountMock = accountsMock[0];
 
     const id = accountMock.id;

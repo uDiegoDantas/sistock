@@ -42,7 +42,7 @@ describe('CategoryService', () => {
     request.flush(categoryMock);
   });
 
-    it('Teste rota listar', () => {
+  it('Teste rota listar', () => {
     const expectedUrl = `${categoryService['categoryBaseUrl']}`;
 
     categoryService.list().subscribe((categorys) => {
@@ -54,9 +54,9 @@ describe('CategoryService', () => {
     expect(request.request.method).toBe('GET');
     expect(request.request.urlWithParams).toBe(expectedUrl);
     request.flush(categorysMock);
-  });  
+  });
 
-   it('Teste rota editar', () => {
+  it('Teste rota editar', () => {
     const categoryMock = categorysMock[0];
 
     const id = categoryMock.id;
@@ -89,7 +89,7 @@ describe('CategoryService', () => {
     expect(request.request.method).toBe('POST');
     expect(request.request.urlWithParams).toBe(expectedUrl);
     request.flush(categoryMock);
-  }); 
+  });
 
   it('Teste rota deletar', () => {
     const id = 0;

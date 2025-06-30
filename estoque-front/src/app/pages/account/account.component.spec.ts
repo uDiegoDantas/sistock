@@ -91,9 +91,9 @@ describe('AccountComponent', () => {
 
     expect(accountServiceSpy.create).toHaveBeenCalledWith(mockAccounts[0]);
     expect(snackbarServiceSpy.open).toHaveBeenCalledWith('Conta cadastrada com sucesso!');
-  }); 
+  });
 
-    it('should not insert if account already exists', async () => {
+  it('should not insert if account already exists', async () => {
     accountServiceSpy.list.and.returnValue(of([mockAccounts[0]]));
     component.ngOnInit();
     utilsServiceSpy.openDialog.and.resolveTo(mockAccounts[0]);
@@ -102,7 +102,7 @@ describe('AccountComponent', () => {
 
     expect(accountServiceSpy.create).not.toHaveBeenCalled();
     expect(utilsServiceSpy.onError).toHaveBeenCalledWith('Já existe uma conta cadastrada com esse nome.');
-  });  
+  });
 
   it('should call delete and refresh list on confirmation', async () => {
     accountServiceSpy.list.and.returnValue(of(mockAccounts));
@@ -124,7 +124,7 @@ describe('AccountComponent', () => {
     expect(accountServiceSpy.delete).not.toHaveBeenCalled();
   });
 
-    it('should handle insert error', async () => {
+  it('should handle insert error', async () => {
     accountServiceSpy.list.and.returnValue(of([]));
     accountServiceSpy.create.and.returnValue(
       throwError(() => ({
@@ -138,7 +138,7 @@ describe('AccountComponent', () => {
     expect(utilsServiceSpy.onError).toHaveBeenCalledWith('Erro mock');
   });
 
-    it('should handle insert error with default message', async () => {
+  it('should handle insert error with default message', async () => {
     accountServiceSpy.list.and.returnValue(of([]));
     accountServiceSpy.create.and.returnValue(
       throwError(() => ({
@@ -152,7 +152,7 @@ describe('AccountComponent', () => {
     expect(utilsServiceSpy.onError).toHaveBeenCalledWith('Erro ao inserir conta');
   });
 
-    it('should handle delete error', async () => {
+  it('should handle delete error', async () => {
     accountServiceSpy.delete.and.returnValue(
       throwError(() => ({
         error: { message: 'Erro ao deletar' },
@@ -165,7 +165,7 @@ describe('AccountComponent', () => {
     expect(utilsServiceSpy.onError).toHaveBeenCalledWith('Erro ao deletar');
   });
 
-    it('should handle delete error with default message', async () => {
+  it('should handle delete error with default message', async () => {
     accountServiceSpy.delete.and.returnValue(
       throwError(() => ({
         error: { message: null },

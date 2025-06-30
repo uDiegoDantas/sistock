@@ -64,7 +64,7 @@ describe('LogComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
- 
+
   it('should call getLogs, getStocks and createForm on ngOnInit', () => {
     const logsSpy = spyOn(component, 'getLogs').and.callThrough();
     const stocksSpy = spyOn(component, 'getStocks').and.callThrough();

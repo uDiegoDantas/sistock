@@ -30,7 +30,7 @@ describe('CategoryDetailComponent', () => {
     fixture.detectChanges();
   }
 
-   it('should create with category data', () => {
+  it('should create with category data', () => {
     createComponentWithData(mockCategory);
 
     expect(component).toBeTruthy();
@@ -39,7 +39,7 @@ describe('CategoryDetailComponent', () => {
     expect(component.isActive.value).toBe(true);
   });
 
-    it('should create without category data', () => {
+  it('should create without category data', () => {
     createComponentWithData(null);
 
     expect(component).toBeTruthy();
