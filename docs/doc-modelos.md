@@ -6,28 +6,30 @@
 
 ```mermaid
 classDiagram
-    Usuario : +long id
-    Usuario : +String name
-    Usuario : +String password
-    Usuario : +boolean iAdmin
+    Account : +int id
+    Account : +String name
+    Account : +String password
+    Account : +boolean isActive
+    Account : +int userType
 
-    Categoria : +long id
-    Categoria : +String name
+    Category : +int id
+    Category : +String name
+    Category : +boolean isActive
 
-    Produto : +long id
-    Produto : +String name
-    Produto : +Double preco
-    Produto : +long id_categoria
+    Product : +int id
+    Product : +String name
+    Product : +Float preco
+    Product : +int categoryId
+    Product : +boolean isActive
 
-    Log : +long id PK
-    Log : +Date data_movimentacao
-    Log : +int id_estoque
-    Log : buscarPorData()
+    Log : +int id
+    Log : +Date date
+    Log : +int stockId
+    Log : +int accountId
 
-    Estoque: +long id
-    Estoque: +int quantidade
-    Estoque: +long id_produto
-    Estoque: alterarQuantidade()
+    Stock: +int id
+    Stock: +int quantity
+    Stock: +int productId
 ```
 
 ### Descrição das Entidades
@@ -46,65 +48,65 @@ Descrição sucinta das entidades presentes no sistema.
 
 ```mermaid
 erDiagram
-    USUARIO {
-        long id PK
+    Account {
+        int id PK
         string name
-        string login
         string password
-        boolean isAdmin
+        boolean isActive
+        int userType
+    }
+    Account ||--o{ Log : "cria"
+
+    Category {
+        int id PK
+        string name
+        boolean isActive
     }
 
-    CATEGORIA {
-        long id PK
-        string nome
+    Product {
+        int id PK
+        string name
+        float price
+        boolean isActive
+        int categoryId FK
+    }
+    Category ||--o{ Product : "possui"
+
+    Log {
+        int id PK
+        Date date
+        int stockId FK 
+        int accountId FK
     }
 
-    PRODUTO {
-        long id PK
-        string nome
-        double preco
-        long id_categoria FK
+    Stock {
+        int id PK
+        int quantity
+        int productId FK
     }
-    CATEGORIA ||--o{ PRODUTO : "possui"
-
-    LOG {
-        long id PK
-        Date data_movimentacao
-        long id_estoque FK 
-    }
-
-    ESTOQUE {
-        long id PK
-        int quantidade
-        long id_produto FK
-    }
-    ESTOQUE ||--o{ LOG : "possui"
-    ESTOQUE ||--|| PRODUTO : "tem"
-
+    Stock ||--o{ Log : "possui"
+    Stock ||--|| Product : "tem"
 ```
 
 ### Dicionário de Dados
 
 |   Tabela   | Laboratório |
 | ---------- | ----------- |
-| Usuário  | Armazena as informações de um laboratório acadêmico. |
-| Categoria | Armazena as categorias que serão utilizadas no relacionamento com os Produtos. |
-| Produto | Contém os diversos produtos presentes no sistmea. |
-| Estoque | Armazena as informações do estoque em si. |
+| Account  | Armazena as informações de um laboratório acadêmico. |
+| Category | Armazena as categorias que serão utilizadas no relacionamento com os Produtos. |
+| Product | Contém os diversos produtos presentes no sistmea. |
+| Stock | Armazena as informações do estoque em si. |
 | Log | Armazena os logs relacionados ao movimento de estoque. |
 
 |  Nome         | Descrição                        | Tipo de Dado | Tamanho | Restrições de Domínio |
 | ------------- | -------------------------------- | ------------ | ------- | --------------------- |
-| id                 | identificador gerado pelo SGBD                | BIGINT       | --     | PK / Identity |
-| name               | nome do usuário                               | VARCHAR      | 30     | Not Null |
-| login              | login do usuário                              | VARCHAR      | 30     | Unique / Not Null |
+| id                 | identificador gerado pelo SGBD                | INT       | --     | PK / Identity |
+| name               | nome da entidade                               | VARCHAR      | 30     | Not Null |
 | password           | senha do usuário                              | VARCHAR      | 30     | Not Null |
-| isAdmin            | identificador se o usuário é admin            | BOOLEAN      | --     | Not Null |
-| nome               | nome da categoria                             | VARCHAR      | 40     | Unique / Not Null |
-| nome               | nome do produto                               | VARCHAR      | 30     | Not Null |
-| preco              | preço do produto                              | DOUBLE       | --     | Not Null |
-| id_categoria       | id da categoria relacionado ao produto        | BIGINT       | --     | FK / Not Null |
-| data_movimentacao  | data de movimentação do log                   | DATE         | --     | Not Null |
-| id_estoque         | id do estoque relacionado ao log              | BIGINT       | 150    | FK / Not Null |
-| quantidade         | quantidade do estoque                         | INT          | --     | Not Null |
-| id_produto         | id do produto relacionado ao estoque          | BIGINT       | --     | FK / Unique / Not Null |
+| userType            | identificador do tipo da conta            | INT      | --     | Not Null |
+| price              | preço do produto                              | FLOAT       | --     | Not Null |
+| categoryId       | id da categoria relacionado        | INT       | --     | FK / Not Null |
+| date  | data de movimentação do log                   | DATE         | --     | Not Null |
+| stockId         | id do estoque relacionado              | INT       | 150    | FK / Not Null |
+| quantity         | quantidade do estoque                         | INT          | --     | Not Null |
+| productId         | id do produto relacionado          | INT       | --     | FK / Unique / Not Null |
