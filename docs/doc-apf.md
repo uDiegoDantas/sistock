@@ -1,8 +1,8 @@
-# 📊 Análise de Pontos de Função (APF)
+# Análise de Pontos de Função (APF)
 
 A Análise de Pontos de Função (APF) permite medir o tamanho funcional do sistema, considerando as funcionalidades implementadas no projeto Sis Estoque.
 
-## 🔍 Visão Geral do Sistema
+## Visão Geral do Sistema
 
 O Sis Estoque é um sistema de gerenciamento de estoques, desenvolvido com:
 
@@ -11,7 +11,7 @@ O Sis Estoque é um sistema de gerenciamento de estoques, desenvolvido com:
 
 A estrutura do repositório indica uma separação clara entre o frontend e o backend, com pastas dedicadas para cada um.
 
-## 📁 Contagem Indicativa
+## Contagem Indicativa
 
 Na contagem indicativa, consideramos apenas as Funções de Dados:
 
@@ -22,42 +22,44 @@ Na contagem indicativa, consideramos apenas as Funções de Dados:
 
 ```mermaid
 erDiagram
-    USUARIO {
-        long id PK
+    Account {
+        int id PK
         string name
-        string login
         string password
-        boolean isAdmin
+        boolean isActive
+        int userType
+    }
+    Account ||--o{ Log : "cria"
+
+    Category {
+        int id PK
+        string name
+        boolean isActive
     }
 
-    CATEGORIA {
-        long id PK
-        string nome
+    Product {
+        int id PK
+        string name
+        float price
+        boolean isActive
+        int categoryId FK
+    }
+    Category ||--o{ Product : "possui"
+
+    Log {
+        int id PK
+        Date date
+        int stockId FK 
+        int accountId FK
     }
 
-    PRODUTO {
-        long id PK
-        string nome
-        double preco
-        long id_categoria FK
+    Stock {
+        int id PK
+        int quantity
+        int productId FK
     }
-    CATEGORIA ||--o{ PRODUTO : "possui"
-
-    LOG {
-        long id PK
-        Date data_movimentacao
-        long id_estoque FK 
-    }
-
-    ESTOQUE {
-        long id PK
-        int quantidade
-        long id_produto FK
-    }
-    ESTOQUE ||--o{ LOG : "possui"
-    ESTOQUE ||--|| PRODUTO : "tem"
-
-
+    Stock ||--o{ Log : "possui"
+    Stock ||--|| Product : "tem"
 ```
 
 ### Tabela de Contagem Indicativa
@@ -68,7 +70,7 @@ erDiagram
 | ALI Usuário     | Usuário, Log                 | 35 PF         |
 | **Total**       |                              | **70 PF**     |
 
-## 📋 Contagem Detalhada
+## Contagem Detalhada
 
 A contagem detalhada considera as Funções de Dados e as Funções de Transação:
 
@@ -95,8 +97,3 @@ A contagem detalhada considera as Funções de Dados e as Funções de Transaç�
 | **Total**            |      |     |     |              | **41 PF**     |
 
 ---
-
-**Observações**:
-
-- As estimativas de ALR (Arquivos Lógicos Referenciados) e DER (Dados Elementares Referenciados) foram feitas com base nas entidades e relacionamentos identificados no modelo de dados.
-- A complexidade foi determinada conforme as diretrizes da APF, considerando a quantidade de ALR e DER.

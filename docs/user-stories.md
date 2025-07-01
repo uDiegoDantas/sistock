@@ -14,6 +14,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | 03/04/2025 | 0.0.4   | Detalhamento do User Story US03    | Diego Dantas |
 | 03/04/2025 | 0.0.5   | Detalhamento do User Story US04    | Diego Dantas |
 | 03/04/2025 | 0.0.6   | Detalhamento do User Story US05    | Diego Dantas |
+| 01/07/2025 | 0.0.6   | Finalização do documento    | Diego Dantas |
 
 ### User Story US01 - Manter Categoria
 |               |                                                                |
@@ -30,7 +31,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 |                           |                                     |
 | ------------------------- | ----------------------------------- | 
 | **Prioridade**            | Essencial                           | 
-| **Estimativa**            | 15 h                                | 
+| **Estimativa**            | 30 h                                | 
 | **Tempo Gasto (real):**   |                                     | 
 | **Tamanho Funcional**     | 5 PF                                | 
 | **Analista**              | Reinaldo Alves                      | 
@@ -61,7 +62,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 |                           |                                     |
 | ------------------------- | ----------------------------------- | 
 | **Prioridade**            | Essencial                           | 
-| **Estimativa**            | 20 h                                | 
+| **Estimativa**            | 40h h                                | 
 | **Tempo Gasto (real):**   |                                     | 
 | **Tamanho Funcional**     | 7  PF                               | 
 | **Analista**              | Diego Dantas                        | 
@@ -92,7 +93,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 |                           |                                     |
 | ------------------------- | ----------------------------------- | 
 | **Prioridade**            | Essencial                           | 
-| **Estimativa**            | 30 h                                | 
+| **Estimativa**            | 60h h                                | 
 | **Tempo Gasto (real):**   |                                     | 
 | **Tamanho Funcional**     | 9 PF                                | 
 | **Analista**              | Emerson Silva                       | 
@@ -121,11 +122,11 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 |                           |                                     |
 | ------------------------- | ----------------------------------- | 
 | **Prioridade**            | Essencial                           | 
-| **Estimativa**            | 35 h                                | 
+| **Estimativa**            | 60h h                                | 
 | **Tempo Gasto (real):**   |                                     | 
 | **Tamanho Funcional**     | 12 PF                               | 
-| **Analista**              | Emerson Silva                       | 
-| **Desenvolvedor**         | Diego Dantas                        | 
+| **Analista**              | Diego Dantas                       | 
+| **Desenvolvedor**         | Emerson Silva                        | 
 | **Revisor**               | Reinaldo Alves                      | 
 | **Testador**              | João Pedro                          | 
 
@@ -150,16 +151,10 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 |                           |                                     |
 | ------------------------- | ----------------------------------- | 
 | **Prioridade**            | Essencial                           | 
-| **Estimativa**            | 25h                                 | 
+| **Estimativa**            | 100h                                 | 
 | **Tempo Gasto (real):**   |                                     | 
-| **Tamanho Funcional**     | 8 PF                                | 
-| **Analista**              | João Pedro                          | 
-| **Desenvolvedor**         | Emerson Silva                       | 
+| **Tamanho Funcional**     | 15 PF                                | 
+| **Analista**              | Reinaldo Alves                          | 
+| **Desenvolvedor**         | João Pedro                       | 
 | **Revisor**               | Diego Dantas                        | 
 | **Testador**              | Reinaldo Alves                      | 
-
-
-| Testes de Aceitação (TA) |  |
-| ----------- | --------- |
-| **Código**      | **Descrição** |
-| **TA05.01** | Não deve ser possível o cadastro de usuários com logins que já foram cadastrados no sistema. |
