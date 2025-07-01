@@ -24,12 +24,12 @@ Reinaldo Alves| PowerBI, Machine Learning, Python |
 
 ## Perfis dos Usuários
 
-O sistema poderá ser utilizado por apenas um usuário. 
+O sistema poderá ser utilizado por apenas usuários admnistradores e usuários comuns (funcionários)
 
 Perfil                                 | Descrição   |
 ---------                              | ----------- |
 Administrador | Este usuário realiza os cadastros de novos usuários e podem realizar qualquer função. 
-Funcionário | Este usuário pode realizar funções com as entidades de Produtos, Estoque, Categorias e Logs. 
+Funcionário | Este usuário pode realizar funções de leitura com as entidades de Produtos, Estoque, Categorias, Logs e também realizar escrita de Logs e atualização de Estoques
 
 ## Lista de Requisitos Funcionais
 
@@ -97,45 +97,48 @@ Abaixo apresentamos o modelo conceitual usando o **Mermaid**.
 
 ```mermaid
 erDiagram
-    USUARIO {
-        long id PK
+    Account {
+        int id PK
         string name
-        string login
         string password
-        boolean isAdmin
+        boolean isActive
+        int userType
+    }
+    Account ||--o{ Log : "cria"
+
+    Category {
+        int id PK
+        string name
+        boolean isActive
     }
 
-    CATEGORIA {
-        long id PK
-        string nome
+    Product {
+        int id PK
+        string name
+        float price
+        boolean isActive
+        int categoryId FK
+    }
+    Category ||--o{ Product : "possui"
+
+    Log {
+        int id PK
+        Date date
+        int stockId FK 
+        int accountId FK
     }
 
-    PRODUTO {
-        long id PK
-        string nome
-        double preco
-        long id_categoria FK
+    Stock {
+        int id PK
+        int quantity
+        int productId FK
     }
-    CATEGORIA ||--o{ PRODUTO : "possui"
-
-    LOG {
-        long id PK
-        Date data_movimentacao
-        long id_estoque FK 
-    }
-
-    ESTOQUE {
-        long id PK
-        int quantidade
-        long id_produto FK
-    }
-    ESTOQUE ||--o{ LOG : "possui"
-    ESTOQUE ||--|| PRODUTO : "tem"
-
+    Stock ||--o{ Log : "possui"
+    Stock ||--|| Product : "tem"
 ```
 
 #### Descrição das Entidades
-**Usuário** - Usuário que irá utilizar todo o sistema, de cabo a rabo.
+**Usuário** - Usuário que irá utilizar todo o sistema.
 
 **Produto** - Representa os produtos utilizados no sistema
 
@@ -143,7 +146,7 @@ erDiagram
 
 **Estoque** - Entidade que controla a quantidade do estoque de cada produto.
 
-**Log** - Funciona como um auxiliar para o Estoque, indicando cada movimentação que ocorreu por data e hora.
+**Log** - Funciona como um auxiliar para o Estoque, indicando cada movimentação que ocorreu por data e hora e quem foi que fez.
 
 
 ## Lista de Requisitos Não-Funcionais
