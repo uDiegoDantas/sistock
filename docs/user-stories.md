@@ -85,10 +85,8 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 
 | **Requisitos envolvidos** |                                                    |
 | ------------- | :------------------------------------------------------------- |
-| RF03.01          | Inserir Estoque |
 | RF03.02          | Listar Estoque  |
 | RF03.03          | Alterar Estoque|
-| RF03.04          | Excluir Estoque |
 
 |                           |                                     |
 | ------------------------- | ----------------------------------- | 
@@ -105,9 +103,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | Testes de Aceitação (TA) |  |
 | ----------- | --------- |
 | **Código**      | **Descrição** |
-| **TA03.01** | O usuário não deve conseguir inserir ou atualizar estoques com produtos inválidos |
-| **TA03.02** | O usuário não deve conseguir inserir ou atualizar estoques com quantidade inferior a zero |
-| **TA03.02** | Não deve ser possível inserir um estoque contendo um produto que já está com um estoque cadastrado. |
+| **TA03.01** | O usuário não deve conseguir atualizar estoques com quantidade inferior a zero |
 
 ### User Story US04 - Manter Log
 |               |                                                                |
