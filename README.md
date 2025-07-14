@@ -8,8 +8,6 @@
 Integrante 
 ------- |
 Diego Dantas |
-Emerson da Silva |
-João Pedro dos Santos |
 Reinaldo Alves |
 
 
